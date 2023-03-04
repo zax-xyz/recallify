@@ -21,7 +21,7 @@ const Pill = tw.div`
 const H2 = tw.h2`text-[15px] leading-tight mb-0`;
 const Detail = styled.div(tw`text-[11px] leading-tight text-light-neutral-700 mb-3`);
 
-const products = ["a", "b", "c", "d"];
+const products = Array.from({ length: 26 }, (_, i) => String.fromCharCode("a".charCodeAt(0) + i));
 
 const ProductsRow = ({ products }: { products: string[] }) => (
   <div tw="flex gap-3 p-1 pl-10 -mx-9 overflow-x-auto">
