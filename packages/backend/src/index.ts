@@ -1,10 +1,18 @@
-import { PrismaClient } from "@prisma/client";
+import * as trpcExpress from "@trpc/server/adapters/express";
 import express from "express";
 
-const prisma = new PrismaClient();
+import { prisma } from "./managers/prisma";
+import { appRouter, createContext } from "./managers/rpc";
+
+// tRPC initialisation
+export type AppRouter = typeof appRouter;
+
+// Prisma & express
 const app = express();
 
 async function main() {
+  app.use("/rpc", trpcExpress.createExpressMiddleware({ router: appRouter, createContext }));
+
   app.listen(3001, "0.0.0.0", () => {
     console.log("Listening on port 3001");
   });
