@@ -7,7 +7,9 @@ importers:
       '@prisma/client': 4.11.0
       '@trpc/server': 10.14.0
       '@types/express': 4.17.17
+      '@types/express-serve-static-core': 4.17.33
       '@types/node': 18.14.6
+      '@types/qs': 6.9.7
       '@typescript-eslint/eslint-plugin': 5.54.0
       '@typescript-eslint/parser': 5.54.0
       argon2: 0.30.3
@@ -27,7 +29,9 @@ importers:
       zod: 3.21.0
     devDependencies:
       '@types/express': 4.17.17
+      '@types/express-serve-static-core': 4.17.33
       '@types/node': 18.14.6
+      '@types/qs': 6.9.7
       '@typescript-eslint/eslint-plugin': 5.54.0_6mj2wypvdnknez7kws2nfdgupi
       '@typescript-eslint/parser': 5.54.0_ycpbpc6yetojsgtrx3mwntkhsu
       eslint: 8.35.0
@@ -43,6 +47,7 @@ importers:
       '@headlessui/react': ^1.7.13
       '@stitches/react': ^1.2.8
       '@tailwindcss/forms': ^0.5.3
+      '@trpc/client': ^10.14.0
       '@types/react': ^18.0.24
       '@types/react-dom': ^18.0.8
       '@typescript-eslint/eslint-plugin': ^5.42.0
@@ -50,6 +55,7 @@ importers:
       '@vitejs/plugin-react': ^2.2.0
       autoprefixer: ^10.4.13
       babel-plugin-macros: ^3.1.0
+      backend: workspace:*
       chart.js: ^4.2.1
       eslint: ^8.26.0
       eslint-config-airbnb: ^19.0.4
@@ -77,6 +83,8 @@ importers:
       '@ailibs/feather-react-ts': 3.0.3_react@18.2.0
       '@headlessui/react': 1.7.13_biqbaboplfbrettd7655fr4n2y
       '@stitches/react': 1.2.8_react@18.2.0
+      '@trpc/client': 10.14.0
+      backend: link:../backend
       chart.js: 4.2.1
       react: 18.2.0
       react-chartjs-2: 5.2.0_t5yjg6ab35jnsudnh2qdighszm
@@ -1657,6 +1665,12 @@ packages:
       mini-svg-data-uri: 1.4.4
       tailwindcss: 3.2.7
     dev: true
+
+  /@trpc/client/10.14.0:
+    resolution: {integrity: sha512-fi7i+Av3ARGyWwlbuGD+ZeqF5HxomGG8hBB89dWHAc4WlBnDV6g0GQQgDaMKZqXbGt0sYeJucym6WPI6kO7HCQ==}
+    peerDependencies:
+      '@trpc/server': 10.14.0
+    dev: false
 
   /@trpc/server/10.14.0:
     resolution: {integrity: sha512-hNnvwkSfqpIb89CH8pTV8VkldS9qjd3ZxaCgya7CeCk6QeDajT/bRX9bPmrkEe0UQtrbbPU5h47nuMrBsN2ghQ==}
