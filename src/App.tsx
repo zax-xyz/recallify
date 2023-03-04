@@ -4,8 +4,12 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import NavBar from "components/Navbar";
 import Landing from "pages/landing";
+import ProductPage from "pages/product";
 
-const routes = [<Route path="/" element={<Landing />} />];
+const routes = [
+  <Route path="/" element={<Landing />} />,
+  <Route path="/product/:id" element={<ProductPage />} />,
+];
 
 const App = () => (
   <div tw="flex flex-col bg-gray-100 h-screen">

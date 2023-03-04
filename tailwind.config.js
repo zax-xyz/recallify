@@ -75,6 +75,10 @@ module.exports = {
           1000: '#eef0f2',
         },
       },
+      boxShadow: {
+        1: '0px 2px 4px rgba(0, 0, 0, 0.05)',
+        2: '0px 4px 10px -1px rgba(0, 0, 0, 0.1), 0px 2px 4px -2px rgba(0, 0, 0, 0.1)',
+      },
     },
   },
   plugins: [],
