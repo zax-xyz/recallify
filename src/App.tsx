@@ -13,7 +13,7 @@ const routes = [
 ];
 
 const App = () => (
-  <div tw="flex flex-col bg-gray-100 h-screen">
+  <div tw="flex flex-col h-screen">
     <BrowserRouter>
       <main tw="flex flex-col gap-4 flex-1 p-9 pb-28">
         <BackgroundGlow />
