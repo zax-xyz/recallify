@@ -8,7 +8,7 @@ const Label = tw.label`inline-flex flex-col gap-0.5`;
 
 const Register = () => (
   <>
-    <h1>Login</h1>
+    <h1>Register</h1>
     <form tw="flex flex-col gap-4" action="/login" method="POST">
       <Label>
         Preferred Name
