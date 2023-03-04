@@ -1,25 +1,24 @@
-import { useState } from 'react';
-import 'twin.macro';
+import "twin.macro";
 
-const App = () => {
-  const [count, setCount] = useState(0);
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
-  return (
-    <div tw="text-center">
-      <header tw="min-h-screen flex flex-col items-center justify-center gap-2 bg-[#282c34] text-2xl text-white">
-        <p>Hello Vite + React!</p>
-        <p>
-          <button
-            tw="bg-white/20 hover:bg-white/25 transition-colors rounded px-2 py-1"
-            onClick={() => setCount(count + 1)}
-            type="button"
-          >
-            count is: {count}
-          </button>
-        </p>
-      </header>
-    </div>
-  );
-};
+import NavBar from "components/Navbar";
+import Landing from "pages/landing";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Landing />,
+  },
+]);
+
+const App = () => (
+  <div tw="flex flex-col bg-gray-100 h-screen">
+    <main tw="flex flex-col gap-4 flex-1 p-9">
+      <RouterProvider router={router} />
+    </main>
+    <NavBar />
+  </div>
+);
 
 export default App;
