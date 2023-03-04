@@ -10,6 +10,7 @@ import ProductPage from "pages/product";
 import Profile from "pages/profile";
 import Receipts from "pages/receipts";
 import Settings from "pages/settings";
+import Register from "pages/Register";
 
 const routes = [
   <Route key="/" path="/" element={<Landing />} />,
@@ -18,6 +19,7 @@ const routes = [
   <Route key="profile" path="/profile" element={<Profile />} />,
   <Route key="settings" path="/settings" element={<Settings />} />,
   <Route key="login" path="/login" element={<Login />} />,
+  <Route key="register" path="/register" element={<Register />} />,
 ];
 
 const App = () => (
