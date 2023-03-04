@@ -29,7 +29,7 @@ const Tab = styled(NavLink, {
 });
 
 const NavBar = () => (
-  <nav tw="bg-white py-2 px-4">
+  <nav tw="fixed bottom-0 inset-x-0 bg-white py-2 px-4">
     <ul tw="flex justify-around">
       {tabs.map(({ to, icon, name }) => (
         <li>
