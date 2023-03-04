@@ -34,7 +34,7 @@ const ProductsRow = ({ products }: { products: string[] }) => (
 );
 
 const Landing = () => (
-  <div tw="z-0 flex flex-col gap-6">
+  <div tw="z-0 flex flex-col gap-4">
     <FadeGradient />
     <header tw="flex flex-col items-center gap-6">
       <Pill>Welcome back, Michelle</Pill>
