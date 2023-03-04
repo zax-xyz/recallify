@@ -23,7 +23,7 @@ const FloatingActionButton = () => {
         />
         <Icon
           name="plus"
-          tw="w-[4rem] h-[4rem] absolute bottom-[8rem] right-[2rem] bg-[#FDFDFF] overflow-visible rounded-[50%] shadow-2 p-5"
+          tw="w-16 h-16 absolute bottom-32 right-8 bg-[#FDFDFF] overflow-visible rounded-full shadow-2 p-5 text-purple-1000"
         />
       </label>
     </>

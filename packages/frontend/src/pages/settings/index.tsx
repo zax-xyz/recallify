@@ -156,7 +156,7 @@ const Settings = () => {
             {showSearchLocation && (
               <div tw="relative self-stretch text-light-neutral-1000 mt-5">
                 <Input
-                  tw="w-full px-10"
+                  tw="w-full px-10 animate-fade-in"
                   placeholder="Search for a location..."
                   onFocus={() => setSearchLocationFocused(true)}
                   onBlur={() => {
