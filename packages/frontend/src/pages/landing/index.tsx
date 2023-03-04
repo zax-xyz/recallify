@@ -19,7 +19,7 @@ const Pill = tw.div`
 `;
 
 const H2 = tw.h2`text-[15px] leading-tight mb-0`;
-const Detail = tw.div`text-[11px] leading-tight text-neutral-700 mb-3`;
+const Detail = styled.div(tw`text-[11px] leading-tight text-light-neutral-700 mb-3`);
 
 const products = ["a", "b", "c", "d"];
 
@@ -68,7 +68,17 @@ const Landing = () => (
     <section>
       <H2>Spending this Month</H2>
       <Detail>Last Updated: 9:41pm 4/03/23</Detail>
-      <Chart />
+      <Card tw="p-2">
+        <div tw="flex justify-between p-2">
+          <span>
+            $0.00 <Detail as="span">Today</Detail>
+          </span>
+          <span>
+            $143.00 <Detail as="span">This month</Detail>
+          </span>
+        </div>
+        <Chart />
+      </Card>
     </section>
   </div>
 );

@@ -41,6 +41,24 @@ const options: ComponentProps<typeof Line>["options"] = {
     },
   },
   devicePixelRatio: 2,
+  scales: {
+    x: {
+      grid: {
+        display: false,
+      },
+    },
+    y: {
+      grid: {
+        display: false,
+      },
+      ticks: {
+        display: false,
+      },
+      border: {
+        display: false,
+      },
+    },
+  },
 };
 
 const labels = ["1/3", "15/3", "30/3"];
@@ -65,5 +83,6 @@ const data: ComponentProps<typeof Line>["data"] = {
   ],
 };
 
-const Chart2 = () => <Line options={options} data={data} />;
-export default Chart2;
+const Chart = () => <Line options={options} data={data} />;
+
+export default Chart;
