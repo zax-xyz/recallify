@@ -54,7 +54,7 @@ const Register = () => {
           </Label>
 
           <div tw="self-center flex flex-col gap-1">
-            <label tw="flex gap-2">
+            <label tw="flex items-center gap-2">
               <input type="checkbox" name="terms_and_conditions" />
               <span>
                 I accept the{" "}

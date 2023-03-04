@@ -26,7 +26,7 @@ const Profile = () => {
       <Transition
         appear
         show
-        enter={tw`transition duration-[600ms]`}
+        enter={tw`transition duration-[300ms]`}
         enterFrom={tw`-translate-x-6 opacity-0`}
       >
         <header>
