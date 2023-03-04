@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import BackgroundGlow from "components/BackgroundGlow";
 import NavBar from "components/Navbar";
+import Login from "pages/Login";
 import Landing from "pages/landing";
 import ProductPage from "pages/product";
 import Profile from "pages/profile";
@@ -16,6 +17,7 @@ const routes = [
   <Route key="receipts" path="/receipts" element={<Receipts />} />,
   <Route key="profile" path="/profile" element={<Profile />} />,
   <Route key="settings" path="/settings" element={<Settings />} />,
+  <Route key="login" path="/login" element={<Login />} />,
 ];
 
 const App = () => (

@@ -94,7 +94,7 @@ const Settings = () => {
               ))}
             </div>
             <div tw="flex justify-end">
-              <Button text="Add Location" isSecondary />
+              <Button isSecondary>Add Location</Button>
             </div>
           </div>
         </section>
@@ -125,7 +125,7 @@ const Settings = () => {
               ))}
             </div>
             <div tw="flex justify-end">
-              <Button text="Add Products" isSecondary />
+              <Button isSecondary>Add Products</Button>
             </div>
           </div>
           <div tw="flex flex-col gap-2">
@@ -145,7 +145,7 @@ const Settings = () => {
               ))}
             </div>
             <div tw="flex justify-end">
-              <Button text="Add Categories" isSecondary />
+              <Button isSecondary>Add Categories</Button>
             </div>
           </div>
         </section>

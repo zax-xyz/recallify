@@ -66,21 +66,23 @@ const Profile = () => {
           </div>
           <div tw="flex justify-between">
             <Button
-              text="Logout"
               isWarning
               onClick={e => {
                 e.preventDefault();
                 // Logout
               }}
-            />
+            >
+              Logout
+            </Button>
             <Button
-              text="Save"
               filled
               onClick={e => {
                 e.preventDefault();
                 updateProfileDetails();
               }}
-            />
+            >
+              Save
+            </Button>
           </div>
         </form>
       </section>

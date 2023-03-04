@@ -1,11 +1,6 @@
-import React, { ComponentProps } from "react";
 import tw, { styled } from "twin.macro";
 
-type ButtonProps = {
-  text: string;
-};
-
-const StyledButton = styled.button({
+const Button = styled.button({
   ...tw`py-[5px] px-[12px] rounded-md`,
 
   variants: {
@@ -22,9 +17,5 @@ const StyledButton = styled.button({
     }
   },
 });
-
-const Button = ({ text, ...props }: ButtonProps & ComponentProps<typeof StyledButton>) => (
-  <StyledButton {...props}>{text}</StyledButton>
-);
 
 export default Button;
