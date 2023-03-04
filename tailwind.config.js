@@ -1,8 +1,13 @@
+const defaultTheme = require('tailwindcss/defaultTheme');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['Inter', ...defaultTheme.fontFamily.sans],
+      },
       colors: {
         red: {
           50: '#fdecec',
@@ -15,7 +20,7 @@ module.exports = {
           700: '#ef4444',
           800: '#d73d3d',
           900: '#a73030',
-          100: '#782222',
+          1000: '#782222',
         },
         purple: {
           50: '#f6f3ff',
@@ -43,7 +48,7 @@ module.exports = {
           900: '#1b54aa',
           1000: '#133c7a',
         },
-        lightNeutral: {
+        'light-neutral': {
           1: '#ffffff',
           100: '#edeef1',
           200: '#dadee2',
@@ -56,7 +61,7 @@ module.exports = {
           900: '#394658',
           1000: '#323e4d',
         },
-        darkNeutral: {
+        'dark-neutral': {
           0: '#000000',
           100: '#1c232c',
           200: '#242c37',
