@@ -18,7 +18,7 @@ const tabs: TabProperties[] = [
 
 const Tab = styled(NavLink, {
   ...tw`
-    w-14 p-2 rounded-lg
+    w-20 py-2 rounded-lg
     flex flex-col items-center gap-1
     text-[10px]
   `,
