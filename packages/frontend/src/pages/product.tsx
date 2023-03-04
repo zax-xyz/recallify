@@ -25,7 +25,7 @@ const ProductPage = () => (
     <Header>
       <div tw="flex flex-col items-center self-center gap-2 mb-2">
         <h1>Banana Cavendish</h1>
-        <img tw="w-48 rounded-lg shadow-1" src={banana} alt="banana" />
+        <img tw="w-48 p-4 bg-white rounded-lg shadow-1" src={banana} alt="banana" />
       </div>
 
       <section>
