@@ -1,14 +1,19 @@
-import React, { useState } from 'react';
-import 'twin.macro';
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "twin.macro";
 
-import Button from 'components/Button';
-import Input from 'components/Input';
-import ProfilePic from 'assets/generic_pfp.jpg';
+import ProfilePic from "assets/generic_pfp.jpg";
+import Button from "components/Button";
+import Input from "components/Input";
+import UserContext, { defaultUserState } from "contexts/UserContext";
 
 const Profile = () => {
-  const [preferredName, setPreferredName] = useState('John Doe');
-  const [email, setEmail] = useState('john.doe@email.com');
-  const [location, setLocation] = useState('Cabaramatta');
+  const [preferredName, setPreferredName] = useState("John Doe");
+  const [email, setEmail] = useState("john.doe@email.com");
+  const [location, setLocation] = useState("Cabaramatta");
+
+  const { setUser } = useContext(UserContext);
+  const navigate = useNavigate();
 
   const updateProfileDetails = () => {
     // Do something with the data on the backend.
@@ -69,7 +74,8 @@ const Profile = () => {
               isWarning
               onClick={e => {
                 e.preventDefault();
-                // Logout
+                setUser(defaultUserState.user);
+                navigate("/login");
               }}
             >
               Logout
