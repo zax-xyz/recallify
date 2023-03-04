@@ -11,14 +11,16 @@ datasource db {
 }
 
 model RecallableProduct {
-  id                 Int      @id @default(autoincrement())
+  id                 String @id @unique
   name               String
-  manufacturer       String
-  recall_date        DateTime
-  recall_locations   String
-  recall_reason      String
-  additional_details String?
-  alternatives       String?
+  product_info       String
+  recall_date        String
+  problem            String
+  food_safety_hazard String
+  what_to_do         String
+  image_url          String
+  date_markings      String
+  origin             String
 }
 
 model GeneralProduct {
