@@ -8,7 +8,7 @@ const products = ["a", "b", "c", "d"];
 
 const Receipts = () => {
   // Fetch then map the receipts.
-  
+
   return (
     <>
       <header>
