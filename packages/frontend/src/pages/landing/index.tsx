@@ -64,6 +64,7 @@ const Alerts = styled.div({
 
 const Landing = () => {
   const [searchFocused, setSearchFocused] = useState(false);
+  const [searchedItem, setSearchedItem] = useState("");
 
   return (
     <div tw="z-0 flex flex-col gap-4">
@@ -77,6 +78,10 @@ const Landing = () => {
             tw="w-full px-10"
             placeholder="Search for a product..."
             onFocus={() => setSearchFocused(true)}
+            onBlur={() => {
+              if (searchedItem === "") setSearchFocused(false);
+            }}
+            onChange={(e) => setSearchedItem(e.target.value)}
           />
           <span tw="absolute inset-y-0 left-0 px-3 flex items-center pointer-events-none">
             <Icon name="search" tw="[input:focus + div &]:text-purple-800" />
