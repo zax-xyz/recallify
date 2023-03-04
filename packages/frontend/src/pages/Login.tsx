@@ -22,7 +22,7 @@ const Login = () => {
         enter={tw`transition duration-[600ms]`}
         enterFrom={tw`-translate-x-6 opacity-0`}
       >
-        <h1>Login</h1>
+        <h1 tw="text-center">Login</h1>
         <form
           tw="flex flex-col gap-4"
           action="/login"
