@@ -1,5 +1,6 @@
 use std::time::Duration;
 
+use anyhow::Context;
 use fetching::{get_first_page, page_specific::specific::SpecificProduct};
 use tracing::{error, info};
 
@@ -10,6 +11,7 @@ mod fetching;
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
     tracing_subscriber::fmt::init();
+    let client = reqwest::Client::new();
     loop {
         // Get first page of products
         let products = get_first_page().await?;
@@ -39,7 +41,12 @@ async fn main() -> anyhow::Result<()> {
         }
 
         // Send the converted products to server
-        //.. thingy
+        let req = client
+            .post(std::env::var("POST_URL").context("missing POST_URL")?)
+            .json(&converted)
+            .build()?;
+        client.execute(req).await?;
+
         let s = serde_json::to_string_pretty(&converted)?;
         tokio::fs::write("./data.json", s).await?;
 
