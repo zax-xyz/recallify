@@ -79,15 +79,6 @@ module.exports = {
         1: "0px 2px 4px rgba(0, 0, 0, 0.05)",
         2: "0px 4px 10px -1px rgba(0, 0, 0, 0.1), 0px 2px 4px -2px rgba(0, 0, 0, 0.1)",
       },
-      keyframes: {
-        "fade-in": {
-          "0%": { opacity: 0 },
-          "100%": { opacity: 1 },
-        },
-      },
-      animation: {
-        "fade-in": "fade-in 1s ease-in",
-      },
     },
   },
   plugins: [require("@tailwindcss/forms")],

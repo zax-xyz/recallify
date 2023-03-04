@@ -24,12 +24,12 @@ const Tab = styled(NavLink, {
   `,
 
   "&.active": tw`
-    text-[#7746df] bg-[#f6f1ff]
+    text-purple-900 bg-[#f6f1ff]
   `,
 });
 
 const Nav = styled.nav({
-  ...tw`fixed bottom-0 inset-x-0 bg-white py-2 px-4 shadow-2`,
+  ...tw`fixed bottom-0 inset-x-0 bg-white py-2 px-4 shadow-2 rounded-t-[12px]`,
 
   variants: {
     hidden: {
