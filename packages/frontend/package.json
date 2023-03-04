@@ -13,6 +13,8 @@
   "dependencies": {
     "@ailibs/feather-react-ts": "^3.0.3",
     "@stitches/react": "^1.2.8",
+    "@trpc/client": "^10.14.0",
+    "backend": "workspace:*",
     "chart.js": "^4.2.1",
     "react": "^18.2.0",
     "react-chartjs-2": "^5.2.0",
