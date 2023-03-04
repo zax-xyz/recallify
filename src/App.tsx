@@ -1,14 +1,20 @@
-import "twin.macro";
+import 'twin.macro';
 
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
+// eslint-disable-next-line prettier/prettier
 import NavBar from "components/Navbar";
-import Landing from "pages/landing";
+import Landing from 'pages/landing';
+import Receipts from 'pages/receipts';
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <Landing />,
+  },
+  {
+    path: '/receipts',
+    element: <Receipts />,
   },
 ]);
 
