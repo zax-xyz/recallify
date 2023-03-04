@@ -13,6 +13,7 @@ datasource db {
 model RecallableProduct {
   id                 String @id @unique
   name               String
+  search_name        String // This only exists because of collation gg
   product_info       String
   recall_date        String
   problem            String
@@ -33,21 +34,24 @@ model User {
   email    String    @unique
   name     String
   password String
-  Receipts Receipt[]
+  receipts Receipt[]
 }
 
 model Receipt {
-  id          Int      @id @default(autoincrement())
+  id          Int            @id @default(autoincrement())
   name        String
   input_date  DateTime
   total_value Float?
-  owner       User     @relation(fields: [userId], references: [id])
+  owner       User           @relation(fields: [userId], references: [id])
   userId      Int
+  entries     ReceiptEntry[]
 }
 
 model ReceiptEntry {
-  id    Int    @id @default(autoincrement())
-  name  String
-  qty   Int?
-  price Float?
+  id        Int     @id @default(autoincrement())
+  name      String
+  qty       Int?
+  price     Float?
+  receipt   Receipt @relation(fields: [receiptId], references: [id])
+  receiptId Int
 }
