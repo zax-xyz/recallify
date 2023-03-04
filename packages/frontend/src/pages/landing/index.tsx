@@ -7,7 +7,7 @@ import Input from "components/Input";
 import Chart from "./Chart";
 
 const FadeGradient = styled.div({
-  ...tw`fixed top-0 inset-x-0 h-60 -z-10`,
+  ...tw`absolute top-0 inset-x-0 h-60 -z-10`,
   background:
     "linear-gradient(180deg, #7746DF 0%, #7746DF 0.4%, rgba(119, 70, 223, 0.99763) 1.62%, rgba(119, 70, 223, 0.992) 3.68%, rgba(119, 70, 223, 0.981037) 6.59%, rgba(119, 70, 223, 0.962963) 10.37%, rgba(119, 70, 223, 0.936) 15.04%, rgba(119, 70, 223, 0.89837) 20.62%, rgba(119, 70, 223, 0.848296) 27.12%, rgba(119, 70, 223, 0.784) 34.56%, rgba(119, 70, 223, 0.703704) 42.96%, rgba(119, 70, 223, 0.60563) 52.34%, rgba(119, 70, 223, 0.488) 62.72%, rgba(119, 70, 223, 0.349037) 74.11%, rgba(119, 70, 223, 0.186963) 86.53%, rgba(119, 70, 223, 0) 100%)",
 });
