@@ -4,8 +4,10 @@ import tw, { styled } from "twin.macro";
 import Card from "components/Card";
 import Input from "components/Input";
 
+import Chart from "./Chart";
+
 const FadeGradient = styled.div({
-  ...tw`fixed top-0 inset-x-0 h-60 -z-10`,
+  ...tw`absolute top-0 inset-x-0 h-60 -z-10`,
   background:
     "linear-gradient(180deg, #7746DF 0%, #7746DF 0.4%, rgba(119, 70, 223, 0.99763) 1.62%, rgba(119, 70, 223, 0.992) 3.68%, rgba(119, 70, 223, 0.981037) 6.59%, rgba(119, 70, 223, 0.962963) 10.37%, rgba(119, 70, 223, 0.936) 15.04%, rgba(119, 70, 223, 0.89837) 20.62%, rgba(119, 70, 223, 0.848296) 27.12%, rgba(119, 70, 223, 0.784) 34.56%, rgba(119, 70, 223, 0.703704) 42.96%, rgba(119, 70, 223, 0.60563) 52.34%, rgba(119, 70, 223, 0.488) 62.72%, rgba(119, 70, 223, 0.349037) 74.11%, rgba(119, 70, 223, 0.186963) 86.53%, rgba(119, 70, 223, 0) 100%)",
 });
@@ -17,9 +19,9 @@ const Pill = tw.div`
 `;
 
 const H2 = tw.h2`text-[15px] leading-tight mb-0`;
-const Detail = tw.div`text-[11px] leading-tight text-neutral-700 mb-3`;
+const Detail = styled.div(tw`text-[11px] leading-tight text-light-neutral-700 mb-3`);
 
-const products = ["a", "b", "c", "d"];
+const products = Array.from({ length: 26 }, (_, i) => String.fromCharCode("a".charCodeAt(0) + i));
 
 const ProductsRow = ({ products }: { products: string[] }) => (
   <div tw="flex gap-3 p-1 pl-10 -mx-9 overflow-x-auto">
@@ -32,7 +34,7 @@ const ProductsRow = ({ products }: { products: string[] }) => (
 );
 
 const Landing = () => (
-  <div tw="z-0 flex flex-col gap-6">
+  <div tw="z-0 flex flex-col gap-4">
     <FadeGradient />
     <header tw="flex flex-col items-center gap-6">
       <Pill>Welcome back, Michelle</Pill>
@@ -50,19 +52,33 @@ const Landing = () => (
         recalled.
       </div>
     </header>
+
     <section>
       <H2>Watched Products</H2>
       <Detail>Last Updated: 9:41pm 4/03/23</Detail>
       <ProductsRow products={products} />
     </section>
+
     <section>
       <H2>Latest Recalled Products</H2>
       <Detail>Last Updated: 9:41pm 4/03/23</Detail>
       <ProductsRow products={products} />
     </section>
+
     <section>
       <H2>Spending this Month</H2>
       <Detail>Last Updated: 9:41pm 4/03/23</Detail>
+      <Card tw="p-2">
+        <div tw="flex justify-between p-2">
+          <span>
+            $0.00 <Detail as="span">Today</Detail>
+          </span>
+          <span>
+            $143.00 <Detail as="span">This month</Detail>
+          </span>
+        </div>
+        <Chart />
+      </Card>
     </section>
   </div>
 );

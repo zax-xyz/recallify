@@ -10,10 +10,10 @@ import Profile from "pages/profile";
 import Receipts from "pages/receipts";
 
 const routes = [
-  <Route path="/" element={<Landing />} />,
-  <Route path="/product/:id" element={<ProductPage />} />,
-  <Route path="/receipts" element={<Receipts />} />,
-  <Route path="/profile" element={<Profile />} />,
+  <Route key="/" path="/" element={<Landing />} />,
+  <Route key="product" path="/product/:id" element={<ProductPage />} />,
+  <Route key="receipts" path="/receipts" element={<Receipts />} />,
+  <Route key="profile" path="/profile" element={<Profile />} />,
 ];
 
 const App = () => (
