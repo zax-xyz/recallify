@@ -29,6 +29,7 @@ ChartJS.register(
 
 const options: ComponentProps<typeof Line>["options"] = {
   responsive: true,
+  aspectRatio: 21 / 9,
   plugins: {
     legend: {
       display: false,
