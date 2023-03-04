@@ -44,6 +44,7 @@ async fn main() -> anyhow::Result<()> {
         let req = client
             .post(std::env::var("POST_URL").context("missing POST_URL")?)
             .json(&converted)
+            .timeout(Duration::from_millis(1000))
             .build()?;
         client.execute(req).await?;
 

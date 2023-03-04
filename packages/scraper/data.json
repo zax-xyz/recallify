@@ -1,0 +1,24 @@
+[
+  {
+    "name": "Sammi Shaanxi Cold Noodle",
+    "publish_date": "25 February 2023",
+    "product_info": "Sammi (Aust) Pty Ltd is conducting a recall of Shaanxi Cold Noodle (Noodle + Seasoning 186g package, containing noodle 80g) . The product has been available for sale at Asian Supermarkets in NSW, ACT, VIC.",
+    "date_markings": "Best Before 11/07/2023​",
+    "problem": "The recall is due to the presence of an undeclared allergen (peanut).",
+    "food_safety_hazard": "Any consumers who have a peanut allergy or intolerance may have a reaction if the product is consumed.",
+    "country_of_origin": "China",
+    "what_to_do": "Consumers who have a peanut allergy or intolerance should not consume this product and should return the product to the place of purchase for a full refund.",
+    "image_url": "https://www.foodstandards.gov.au/industry/foodrecalls/recalls/PublishingImages/Shaanxi%20Cold%20Noodle%20Web%20larger.jpg"
+  },
+  {
+    "name": "Calbee Harvest Snaps Vegemite",
+    "publish_date": "08 February 2023",
+    "product_info": "Calbee Australia is conducting a recall of Calbee Harvest Snaps Vegemite (200g). The product has been available for sale at Coles nationally.",
+    "date_markings": "Best Before 28.08.23 and 29.08.23",
+    "problem": "The recall is due to incorrect allergen information (gluten) in the nutrition information panel.",
+    "food_safety_hazard": "Any consumers who have a gluten allergy or intolerance may have a reaction if the product is consumed.",
+    "country_of_origin": "Thailand",
+    "what_to_do": "Consumers who have a gluten allergy or intolerance should not consume this product and should return it to the place of purchase for a full refund.",
+    "image_url": "https://www.foodstandards.gov.au/industry/foodrecalls/recalls/PublishingImages/harvest%20snaps.JPG"
+  }
+]
