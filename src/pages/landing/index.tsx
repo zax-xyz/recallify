@@ -16,7 +16,8 @@ const Pill = tw.div`
   text-white
 `;
 
-const Detail = tw.div`text-[11px] text-neutral-700`;
+const H2 = tw.h2`text-[15px] leading-tight mb-0`;
+const Detail = tw.div`text-[11px] leading-tight text-neutral-700 mb-3`;
 
 const products = ["a", "b", "c", "d"];
 
@@ -50,18 +51,18 @@ const Landing = () => (
       </div>
     </header>
     <section>
-      <h2 tw="mb-0">Watched Products</h2>
-      <Detail tw="mb-3">Last Updated: 9:41pm 4/03/23</Detail>
+      <H2>Watched Products</H2>
+      <Detail>Last Updated: 9:41pm 4/03/23</Detail>
       <ProductsRow products={products} />
     </section>
     <section>
-      <h2 tw="mb-0">Latest Recalled Products</h2>
-      <Detail tw="mb-3">Last Updated: 9:41pm 4/03/23</Detail>
+      <H2>Latest Recalled Products</H2>
+      <Detail>Last Updated: 9:41pm 4/03/23</Detail>
       <ProductsRow products={products} />
     </section>
     <section>
-      <h2 tw="mb-0">Spending this Month</h2>
-      <Detail tw="mb-3">Last Updated: 9:41pm 4/03/23</Detail>
+      <H2>Spending this Month</H2>
+      <Detail>Last Updated: 9:41pm 4/03/23</Detail>
     </section>
   </div>
 );
