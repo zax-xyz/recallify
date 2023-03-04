@@ -32,9 +32,9 @@ const ProductsRow = ({ products }: { products: string[] }) => (
 );
 
 const Landing = () => (
-  <div tw="z-0">
+  <div tw="z-0 flex flex-col gap-6">
     <FadeGradient />
-    <header tw="flex flex-col items-center gap-6 pb-6">
+    <header tw="flex flex-col items-center gap-6">
       <Pill>Welcome back, Michelle</Pill>
       <div tw="relative mx-1 self-stretch text-light-neutral-1000">
         <div tw="absolute inset-y-0 left-0 px-3 flex items-center pointer-events-none">
