@@ -15,6 +15,20 @@ const Settings = () => {
     "Fruits and Vegetables",
   ]);
 
+  const updateTracker = (key: string, arrayToUpdate: string) => {
+    // Removes the key from the array
+    if (arrayToUpdate === "locations") {
+      const tempArr = trackedLocations.filter((item) => item !== key);
+      setTrackedLocations(tempArr);
+    } else if (arrayToUpdate === "products") {
+      const tempArr = trackedProducts.filter((item) => item !== key);
+      setTrackedProducts(tempArr);
+    } else if (arrayToUpdate === "categories") {
+      const tempArr = trackedCategories.filter((item) => item !== key);
+      setTrackedCategories(tempArr);
+    }
+  }
+
   return (
     <>
       <header>
@@ -81,7 +95,7 @@ const Settings = () => {
             <div tw="flex flex-col gap-0">
               <label htmlFor="tracked-locations">Locations that are being observed</label>
               <p tw="text-left text-sm text-[#59697D]">
-                These are locations that are being observed. You will receive notifications if there
+                These are locations that are being tracked. You will receive notifications if there
                 is a recalled food in any of the following locations.
               </p>
             </div>
@@ -89,7 +103,7 @@ const Settings = () => {
               {trackedLocations.map(location => (
                 <div tw="flex justify-between py-[12px] px-[16px] bg-[#FDFDFF] border border-light-neutral-200 rounded-xl">
                   <p>{location}</p>
-                  <Icon name="x-circle" />
+                  <Icon name="x-circle" onClick={() => updateTracker(location, "locations")}/>
                 </div>
               ))}
             </div>
@@ -120,7 +134,7 @@ const Settings = () => {
               {trackedProducts.map(product => (
                 <div tw="flex justify-between py-[12px] px-[16px] bg-[#FDFDFF] border border-light-neutral-200 rounded-xl">
                   <p>{product}</p>
-                  <Icon name="x-circle" />
+                  <Icon name="x-circle" onClick={() => updateTracker(product, "products")}/>
                 </div>
               ))}
             </div>
@@ -140,7 +154,7 @@ const Settings = () => {
               {trackedCategories.map(category => (
                 <div tw="flex justify-between py-[12px] px-[16px] bg-[#FDFDFF] border border-light-neutral-200 rounded-xl">
                   <p>{category}</p>
-                  <Icon name="x-circle" />
+                  <Icon name="x-circle" onClick={() => updateTracker(category, "categories")} />
                 </div>
               ))}
             </div>
