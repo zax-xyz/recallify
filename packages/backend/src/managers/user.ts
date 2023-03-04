@@ -7,7 +7,11 @@ import { procBuilder } from "./rpc";
 
 export const registerUserHandler = procBuilder
   .input(
-    z.object({ email: z.string().email(), password: z.string().min(8), name: z.string().min(1) }),
+    z.object({
+      email: z.string().email(),
+      password: z.string().min(8),
+      name: z.string().min(1),
+    }),
   )
   .mutation(async ({ input }) => {
     // Create a new user
