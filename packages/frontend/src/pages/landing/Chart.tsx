@@ -42,6 +42,9 @@ const options: ComponentProps<typeof Line>["options"] = {
     line: {
       cubicInterpolationMode: "monotone",
     },
+    point: {
+      radius: 0,
+    },
   },
   devicePixelRatio: 2,
   scales: {
@@ -56,6 +59,10 @@ const options: ComponentProps<typeof Line>["options"] = {
       ticks: {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         color: theme.colors["light-neutral"][1000],
+        // callback: (val, i) => (i % 5 === 0 ? val : ""),
+        // major: {
+        //   enabled: true
+        // },
       },
     },
     y: {
@@ -72,7 +79,7 @@ const options: ComponentProps<typeof Line>["options"] = {
   },
 };
 
-const labels = ["1/3", "15/3", "30/3"];
+const labels = Array.from({ length: 30 }, (_, i) => `${i + 1}/3`);
 
 const data: ComponentProps<typeof Line>["data"] = {
   labels,
