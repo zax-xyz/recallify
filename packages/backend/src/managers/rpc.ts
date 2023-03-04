@@ -13,6 +13,9 @@ export const appRouter = t.router({
 /**
  * Function to handle injecting context to all tRPC resolvers.
  */
-export async function createContext({ req, res }: trpcExpress.CreateExpressContextOptions) {
+export async function createContext({
+  req,
+  res,
+}: trpcExpress.CreateExpressContextOptions) {
   return { req, res };
 }

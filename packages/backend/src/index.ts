@@ -11,7 +11,10 @@ export type AppRouter = typeof appRouter;
 const app = express();
 
 async function main() {
-  app.use("/rpc", trpcExpress.createExpressMiddleware({ router: appRouter, createContext }));
+  app.use(
+    "/rpc",
+    trpcExpress.createExpressMiddleware({ router: appRouter, createContext }),
+  );
 
   app.listen(3001, "0.0.0.0", () => {
     console.log("Listening on port 3001");
