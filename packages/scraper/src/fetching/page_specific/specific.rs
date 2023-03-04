@@ -11,10 +11,13 @@ pub(crate) struct SpecificProduct {
     pub(crate) date_markings: String,
     pub(crate) problem: String,
     /// Food safety hazard
+    #[serde(rename = "food_safety_hazard")]
     pub(crate) fsh: String,
     /// Country of origin
+    #[serde(rename = "country_of_origin")]
     pub(crate) origin: String,
     /// What to do
+    #[serde(rename = "what_to_do")]
     pub(crate) wtd: String,
     pub(crate) image_url: String,
 }
@@ -26,7 +29,7 @@ fn get_inner_text(v: &mut Select) -> anyhow::Result<String> {
         .next()
         .context("no descendent text nodes")?
         .trim()
-        .to_string())
+        .replace('\n', ""))
 }
 
 #[tracing::instrument]
@@ -85,18 +88,4 @@ pub(crate) async fn get_specific_product(url: &str) -> anyhow::Result<SpecificPr
         wtd,
         image_url,
     })
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn test_name() {
-        tokio::runtime::Builder::new_multi_thread().enable_all().build().unwrap().block_on(async move {
-let product = 
-            get_specific_product("https://www.foodstandards.gov.au/industry/foodrecalls/recalls/Pages/CROWN-COUQUE-D%E2%80%99ASSE-WHITE-and-CROWN-COUQUE-D%E2%80%99ASSE-COFFEE.aspx").await.unwrap();
-            println!("{product:#?}")
-        })
-    }
 }

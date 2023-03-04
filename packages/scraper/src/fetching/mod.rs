@@ -26,3 +26,11 @@ pub(crate) async fn get_all_products() -> anyhow::Result<Vec<ProductLink>> {
 
     Ok(all_products)
 }
+
+#[tracing::instrument]
+pub(crate) async fn get_first_page() -> anyhow::Result<Vec<ProductLink>> {
+    let link = "https://www.foodstandards.gov.au/industry/foodrecalls/recalls/Pages/default.aspx";
+    let (products, _) = get_overview_page(link).await?;
+
+    Ok(products)
+}
