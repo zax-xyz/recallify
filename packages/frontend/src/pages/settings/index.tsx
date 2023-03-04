@@ -208,6 +208,7 @@ const Settings = () => {
             </div>
           </section>
           <section tw="flex flex-col gap-2">
+            <h2>Product</h2>
             <div tw="flex flex-col gap-2">
               <label htmlFor="rt-product-tracking">
                 Do you want to enable real-time tracking of observed products?
