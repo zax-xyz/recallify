@@ -43,7 +43,7 @@ const products = Array.from({ length: 26 }, (_, i) => String.fromCharCode("a".ch
 const ProductsRow = ({ products }: { products: string[] }) => (
   <div tw="flex gap-3 p-1 pl-10 -mx-9 overflow-x-auto">
     {products.map(product => (
-      <Link to="/product/1">
+      <Link key={product} to="/product/1">
         <Card key={product} tw="flex items-center justify-center w-24 h-24 flex-shrink-0">
           {product}
         </Card>
@@ -53,7 +53,12 @@ const ProductsRow = ({ products }: { products: string[] }) => (
 );
 
 const Alerts = styled.div({
-  ...tw`flex items-center gap-2 px-4 py-2 mt-4 bg-red-100 text-red-1000 text-[11px] rounded-md`,
+  ...tw`
+    flex items-center gap-2
+    px-4 py-2 mt-4
+    bg-red-100 text-red-1000 shadow-1 shadow-red-600/10
+    text-[11px] rounded-md
+  `,
 
   variants: {
     hidden: {
@@ -64,6 +69,7 @@ const Alerts = styled.div({
 
 const Landing = () => {
   const [searchFocused, setSearchFocused] = useState(false);
+  const [searchedItem, setSearchedItem] = useState("");
 
   return (
     <div tw="z-0 flex flex-col gap-4">
@@ -77,6 +83,10 @@ const Landing = () => {
             tw="w-full px-10"
             placeholder="Search for a product..."
             onFocus={() => setSearchFocused(true)}
+            onBlur={() => {
+              if (searchedItem === "") setSearchFocused(false);
+            }}
+            onChange={e => setSearchedItem(e.target.value)} 
           />
           <span tw="absolute inset-y-0 left-0 px-3 flex items-center pointer-events-none">
             <Icon name="search" tw="[input:focus + div &]:text-purple-800" />

@@ -24,12 +24,22 @@ const Tab = styled(NavLink, {
   `,
 
   "&.active": tw`
-    text-[#7746df] bg-[#f6f1ff]
+    text-purple-900 bg-[#f6f1ff]
   `,
 });
 
-const NavBar = () => (
-  <nav tw="fixed bottom-0 inset-x-0 bg-white py-2 px-4 shadow-2">
+const Nav = styled.nav({
+  ...tw`fixed bottom-0 inset-x-0 bg-white py-2 px-4 shadow-2 rounded-t-[12px]`,
+
+  variants: {
+    hidden: {
+      true: tw`hidden`,
+    },
+  },
+});
+
+const NavBar = (props: ComponentProps<typeof Nav>) => (
+  <Nav {...props}>
     <ul tw="flex justify-around">
       {tabs.map(({ to, icon, name }) => (
         <li key={to}>
@@ -40,7 +50,7 @@ const NavBar = () => (
         </li>
       ))}
     </ul>
-  </nav>
+  </Nav>
 );
 
 export default NavBar;
