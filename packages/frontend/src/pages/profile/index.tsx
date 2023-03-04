@@ -3,7 +3,7 @@ import 'twin.macro';
 
 import Button from 'components/Button';
 import Input from 'components/Input';
-import ProfilePic from '../assets/generic_pfp.jpg';
+import ProfilePic from 'assets/generic_pfp.jpg';
 
 const Profile = () => {
   const [preferredName, setPreferredName] = useState('John Doe');

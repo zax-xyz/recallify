@@ -1,6 +1,6 @@
 import tw, { styled } from "twin.macro";
 
-import banana from "./assets/banana.webp";
+import banana from "assets/banana.webp";
 
 const Header = styled("header", {
   ...tw`flex flex-col gap-1`,
