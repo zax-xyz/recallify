@@ -16,14 +16,15 @@ const Pill = tw.div`
   text-white
 `;
 
-const Detail = tw.div`text-[11px] text-neutral-700`;
+const H2 = tw.h2`text-[15px] leading-tight mb-0`;
+const Detail = tw.div`text-[11px] leading-tight text-neutral-700 mb-3`;
 
 const products = ["a", "b", "c", "d"];
 
 const ProductsRow = ({ products }: { products: string[] }) => (
-  <div tw="flex gap-4">
+  <div tw="flex gap-3 p-1 pl-10 -mx-9 overflow-x-auto">
     {products.map(product => (
-      <Card key={product} tw="flex items-center justify-center w-32 h-32 flex-shrink-0">
+      <Card key={product} tw="flex items-center justify-center w-24 h-24 flex-shrink-0">
         {product}
       </Card>
     ))}
@@ -31,9 +32,9 @@ const ProductsRow = ({ products }: { products: string[] }) => (
 );
 
 const Landing = () => (
-  <div tw="z-0">
+  <div tw="z-0 flex flex-col gap-6">
     <FadeGradient />
-    <header tw="flex flex-col items-center gap-6 pb-6">
+    <header tw="flex flex-col items-center gap-6">
       <Pill>Welcome back, Michelle</Pill>
       <div tw="relative mx-1 self-stretch text-light-neutral-1000">
         <div tw="absolute inset-y-0 left-0 px-3 flex items-center pointer-events-none">
@@ -50,18 +51,18 @@ const Landing = () => (
       </div>
     </header>
     <section>
-      <h2 tw="mb-0">Watched Products</h2>
-      <Detail tw="mb-3">Last Updated: 9:41pm 4/03/23</Detail>
+      <H2>Watched Products</H2>
+      <Detail>Last Updated: 9:41pm 4/03/23</Detail>
       <ProductsRow products={products} />
     </section>
     <section>
-      <h2 tw="mb-0">Latest Recalled Products</h2>
-      <Detail tw="mb-3">Last Updated: 9:41pm 4/03/23</Detail>
+      <H2>Latest Recalled Products</H2>
+      <Detail>Last Updated: 9:41pm 4/03/23</Detail>
       <ProductsRow products={products} />
     </section>
     <section>
-      <h2 tw="mb-0">Spending this Month</h2>
-      <Detail tw="mb-3">Last Updated: 9:41pm 4/03/23</Detail>
+      <H2>Spending this Month</H2>
+      <Detail>Last Updated: 9:41pm 4/03/23</Detail>
     </section>
   </div>
 );
