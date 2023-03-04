@@ -2,6 +2,9 @@ lockfileVersion: 5.4
 
 importers:
 
+  packages/backend:
+    specifiers: {}
+
   packages/frontend:
     specifiers:
       '@ailibs/feather-react-ts': ^3.0.3
