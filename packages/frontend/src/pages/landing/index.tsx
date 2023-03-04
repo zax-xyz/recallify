@@ -4,6 +4,8 @@ import tw, { styled } from "twin.macro";
 import Card from "components/Card";
 import Input from "components/Input";
 
+import Chart from "./Chart";
+
 const FadeGradient = styled.div({
   ...tw`fixed top-0 inset-x-0 h-60 -z-10`,
   background:
@@ -50,19 +52,23 @@ const Landing = () => (
         recalled.
       </div>
     </header>
+
     <section>
       <H2>Watched Products</H2>
       <Detail>Last Updated: 9:41pm 4/03/23</Detail>
       <ProductsRow products={products} />
     </section>
+
     <section>
       <H2>Latest Recalled Products</H2>
       <Detail>Last Updated: 9:41pm 4/03/23</Detail>
       <ProductsRow products={products} />
     </section>
+
     <section>
       <H2>Spending this Month</H2>
       <Detail>Last Updated: 9:41pm 4/03/23</Detail>
+      <Chart />
     </section>
   </div>
 );
