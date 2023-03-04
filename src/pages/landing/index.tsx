@@ -18,19 +18,19 @@ const ProductsRow = ({ products }: { products: string[] }) => (
 const Landing = () => (
   <>
     <header>
-      <h1 tw="text-3xl font-bold my-2">Welcome Back</h1>
+      <h1>Welcome Back</h1>
       <Input tw="w-full" placeholder="Search for a product..." />
     </header>
     <section>
-      <h2 tw="text-2xl font-bold my-3">Products being watched</h2>
+      <h2>Products being watched</h2>
       <ProductsRow products={products} />
     </section>
     <section>
-      <h2 tw="text-2xl font-bold my-3">Latest Recalled Products</h2>
+      <h2>Latest Recalled Products</h2>
       <ProductsRow products={products} />
     </section>
     <section>
-      <h2 tw="text-2xl font-bold my-3">Spending this Month</h2>
+      <h2>Spending this Month</h2>
     </section>
   </>
 );
