@@ -10,7 +10,7 @@ import UserContext, { defaultUserState } from "contexts/UserContext";
 const Profile = () => {
   const [preferredName, setPreferredName] = useState("John Doe");
   const [email, setEmail] = useState("john.doe@email.com");
-  const [location, setLocation] = useState("Cabaramatta");
+  const [location, setLocation] = useState("Cabramatta");
 
   const { setUser } = useContext(UserContext);
   const navigate = useNavigate();
@@ -25,21 +25,21 @@ const Profile = () => {
         <h1 tw="text-3xl font-bold my-2">Your Profile</h1>
       </header>
       <section>
-        <div tw="flex flex-col justify-center items-center gap-5">
+        <div tw="flex flex-col justify-center items-center gap-1">
           <img
             src={ProfilePic}
             alt="profile pic"
             tw="w-[100px] h-[100px] rounded-[50%] object-cover"
           />
           <div tw="flex flex-col justify-center items-center">
-            <p tw="text-[20px] font-bold">John Doe</p>
-            <p>Joined on 15th February 2022</p>
+            <p tw="text-[20px]">John Doe</p>
+            <p tw="text-xs text-light-neutral-700">Joined on 15th February 2022</p>
           </div>
         </div>
       </section>
       <section>
         <form tw="flex flex-col gap-5">
-          <div tw="flex flex-col gap-2">
+          <div tw="flex flex-col gap-1">
             <label htmlFor="preferred-name">Preferred Name</label>
             <Input
               id="preferred-name"
@@ -49,7 +49,7 @@ const Profile = () => {
               onChange={e => setPreferredName(e.target.value)}
             />
           </div>
-          <div tw="flex flex-col gap-2">
+          <div tw="flex flex-col gap-1">
             <label htmlFor="email">Email</label>
             <Input
               id="email"
@@ -59,7 +59,7 @@ const Profile = () => {
               onChange={e => setEmail(e.target.value)}
             />
           </div>
-          <div tw="flex flex-col gap-2">
+          <div tw="flex flex-col gap-1">
             <label htmlFor="location">Location</label>
             <Input
               id="location"
