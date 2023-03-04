@@ -53,7 +53,12 @@ const ProductsRow = ({ products }: { products: string[] }) => (
 );
 
 const Alerts = styled.div({
-  ...tw`flex items-center gap-2 px-4 py-2 mt-4 bg-red-100 text-red-1000 text-[11px] rounded-md`,
+  ...tw`
+    flex items-center gap-2
+    px-4 py-2 mt-4
+    bg-red-100 text-red-1000 shadow-1 shadow-red-600/10
+    text-[11px] rounded-md
+  `,
 
   variants: {
     hidden: {
@@ -81,7 +86,7 @@ const Landing = () => {
             onBlur={() => {
               if (searchedItem === "") setSearchFocused(false);
             }}
-            onChange={(e) => setSearchedItem(e.target.value)}
+            onChange={e => setSearchedItem(e.target.value)} 
           />
           <span tw="absolute inset-y-0 left-0 px-3 flex items-center pointer-events-none">
             <Icon name="search" tw="[input:focus + div &]:text-purple-800" />
