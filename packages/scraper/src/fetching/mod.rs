@@ -1,6 +1,6 @@
 use self::page_specific::get_overview_page;
 
-mod page_specific;
+pub(crate) mod page_specific;
 
 #[derive(Debug, Clone)]
 pub(crate) struct ProductLink {
@@ -8,6 +8,7 @@ pub(crate) struct ProductLink {
     pub(crate) href: String,
 }
 
+#[tracing::instrument]
 pub(crate) async fn get_all_products() -> anyhow::Result<Vec<ProductLink>> {
     let mut link =
         "https://www.foodstandards.gov.au/industry/foodrecalls/recalls/Pages/default.aspx"

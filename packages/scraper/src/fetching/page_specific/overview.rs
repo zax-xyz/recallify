@@ -1,8 +1,9 @@
+use super::super::ProductLink;
 use anyhow::Context;
-use scraper::{ElementRef, Html, Selector};
+use scraper::ElementRef;
+use scraper::Html;
+use scraper::Selector;
 use tracing::info;
-
-use super::ProductLink;
 
 /// Returns a vector of product links found, and if there is another page.
 #[tracing::instrument]
