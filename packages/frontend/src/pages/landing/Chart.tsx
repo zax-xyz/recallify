@@ -11,8 +11,6 @@ import {
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 
-import theme from "tailwind-theme";
-
 import type { ScriptableContext } from "chart.js";
 import type { ComponentProps } from "react";
 
@@ -53,12 +51,10 @@ const options: ComponentProps<typeof Line>["options"] = {
         display: false,
       },
       border: {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- i can't figure out how to get typescript working properly with importing the tailwind config skull emoji
-        color: theme.colors["light-neutral"][400],
+        color: "#a3acb7",
       },
       ticks: {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-        color: theme.colors["light-neutral"][1000],
+        color: "#323e4d",
         // callback: (val, i) => (i % 5 === 0 ? val : ""),
         // major: {
         //   enabled: true
