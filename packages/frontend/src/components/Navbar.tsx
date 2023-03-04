@@ -32,7 +32,7 @@ const NavBar = () => (
   <nav tw="fixed bottom-0 inset-x-0 bg-white py-2 px-4 shadow-2">
     <ul tw="flex justify-around">
       {tabs.map(({ to, icon, name }) => (
-        <li>
+        <li key={to}>
           <Tab to={to}>
             <Icon name={icon} tw="h-[30px] w-[30px]" />
             {name}

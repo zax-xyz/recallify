@@ -8,8 +8,8 @@ import Landing from "pages/landing";
 import ProductPage from "pages/product";
 
 const routes = [
-  <Route path="/" element={<Landing />} />,
-  <Route path="/product/:id" element={<ProductPage />} />,
+  <Route key="/" path="/" element={<Landing />} />,
+  <Route key="product" path="/product/:id" element={<ProductPage />} />,
 ];
 
 const App = () => (
