@@ -8,12 +8,14 @@ import Landing from "pages/landing";
 import ProductPage from "pages/product";
 import Profile from "pages/profile";
 import Receipts from "pages/receipts";
+import Settings from "pages/settings";
 
 const routes = [
   <Route key="/" path="/" element={<Landing />} />,
   <Route key="product" path="/product/:id" element={<ProductPage />} />,
   <Route key="receipts" path="/receipts" element={<Receipts />} />,
   <Route key="profile" path="/profile" element={<Profile />} />,
+  <Route key="settings" path="/settings" element={<Settings />} />,
 ];
 
 const App = () => (

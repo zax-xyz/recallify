@@ -15,6 +15,11 @@ const StyledButton = styled.button({
     isWarning: {
       true: tw`text-red-600`,
     },
+    isSecondary: {
+      true: tw`text-purple-800 font-bold w-fit
+        hover:bg-purple-100 hover:duration-200 ease-in-out
+      `
+    }
   },
 });
 
