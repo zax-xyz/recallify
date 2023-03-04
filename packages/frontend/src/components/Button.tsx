@@ -10,7 +10,7 @@ const Button = styled.button({
       `,
     },
     isWarning: {
-      true: tw`text-red-600 duration-100 ease-in-out hover:bg-red-700`,
+      true: tw`text-red-600 duration-100 ease-in-out hover:text-red-800`,
     },
     isSecondary: {
       true: tw`text-purple-800 font-bold w-fit

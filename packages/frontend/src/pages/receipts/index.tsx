@@ -1,13 +1,9 @@
 import "twin.macro";
 
-import Card from "components/Card";
-import Input from "components/Input";
-import ReceiptCard from "components/ReceiptCard";
 import FloatingActionButton from "components/FloatingActionButton";
 import Transition from "components/Transition";
 import tw from "twin.macro";
-
-const products = ["a", "b", "c", "d"];
+import ReceiptCard from "components/ReceiptCard";
 
 const Receipts = () => {
   // Fetch then map the receipts.

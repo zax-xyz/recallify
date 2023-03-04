@@ -43,7 +43,7 @@ const products = Array.from({ length: 26 }, (_, i) => String.fromCharCode("a".ch
 const ProductsRow = ({ products }: { products: string[] }) => (
   <div tw="flex gap-3 p-1 pl-10 -mx-9 overflow-x-auto">
     {products.map(product => (
-      <Link to="/product/1">
+      <Link key={product} to="/product/1">
         <Card key={product} tw="flex items-center justify-center w-24 h-24 flex-shrink-0">
           {product}
         </Card>

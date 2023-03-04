@@ -80,7 +80,7 @@ const Settings = () => {
         </header>
 
         <form>
-          <section tw="flex flex-col gap-2">
+          <section tw="flex flex-col gap-2 mb-8">
             <h2>General</h2>
             <div tw="flex flex-col gap-2">
               <label htmlFor="device-theme">Theme Preference</label>
@@ -109,17 +109,17 @@ const Settings = () => {
               </StyledSelect>
             </div>
           </section>
-          <section>
+          <section tw="mb-8">
             <h2>Notification</h2>
             <div tw="flex flex-col gap-2">
               <label htmlFor="notifications">Do you want to receive notifications?</label>
-              <div>
+              <div tw="flex items-center gap-2">
                 <input type="checkbox" value="Push Notifications" /> Push Notifications
               </div>
-              <div>
+              <div tw="flex items-center gap-2">
                 <input type="checkbox" value="Email" /> Email
               </div>
-              <div>
+              <div tw="flex items-center gap-2">
                 <input type="checkbox" value="I don't want to receive notifications" /> I don't want
                 to receive notifications
               </div>

@@ -12,7 +12,7 @@ import tw from "twin.macro";
 const Profile = () => {
   const [preferredName, setPreferredName] = useState("John Doe");
   const [email, setEmail] = useState("john.doe@email.com");
-  const [location, setLocation] = useState("Cabaramatta");
+  const [location, setLocation] = useState("Cabramatta");
 
   const { setUser } = useContext(UserContext);
   const navigate = useNavigate();
@@ -40,14 +40,14 @@ const Profile = () => {
               tw="w-[100px] h-[100px] rounded-[50%] object-cover"
             />
             <div tw="flex flex-col justify-center items-center">
-              <p tw="text-[20px] font-bold">John Doe</p>
-              <p>Joined on 15th February 2022</p>
+              <p tw="text-[20px]">John Doe</p>
+              <p tw="text-xs text-light-neutral-700">Joined on 15th February 2022</p>
             </div>
           </div>
         </section>
         <section>
           <form tw="flex flex-col gap-5">
-            <div tw="flex flex-col gap-2">
+            <div tw="flex flex-col gap-1">
               <label htmlFor="preferred-name">Preferred Name</label>
               <Input
                 id="preferred-name"
