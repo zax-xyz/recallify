@@ -41,6 +41,7 @@ export const recallFeedHandler = async (req: Request, res: Response) => {
           food_safety_hazard,
           image_url,
           name,
+          search_name: name.toLowerCase(),
           problem,
           product_info,
           recall_date: publish_date,
