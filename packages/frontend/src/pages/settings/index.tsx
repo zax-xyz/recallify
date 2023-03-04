@@ -4,6 +4,7 @@ import tw from "twin.macro";
 import Button from "components/Button";
 import { styled } from "@stitches/react";
 import Input from "components/Input";
+import Transition from "components/Transition";
 
 const StyledSelect = styled("select", {
   backgroundColor: "#FDFDFF !important",
@@ -68,9 +69,16 @@ const Settings = () => {
 
   return (
     <>
-      <header>
-        <h1>Settings</h1>
-      </header>
+      <Transition
+        appear
+        show
+        enter={tw`transition duration-[600ms]`}
+        enterFrom={tw`-translate-x-6 opacity-0`}
+      >
+        <header>
+          <h1>Settings</h1>
+        </header>
+      </Transition>
       <form>
         <section tw="flex flex-col gap-2">
           <h2>General</h2>
@@ -154,28 +162,36 @@ const Settings = () => {
               ))}
             </div>
             {showSearchLocation && (
-              <div tw="relative self-stretch text-light-neutral-1000 mt-5">
-                <Input
-                  tw="w-full px-10"
-                  placeholder="Search for a location..."
-                  onFocus={() => setSearchLocationFocused(true)}
-                  onBlur={() => {
-                    if (searchLocation === "") setSearchLocationFocused(false);
-                  }}
-                  onChange={e => startSearch("location", e.target.value)}
-                />
-                <span tw="absolute inset-y-0 left-0 px-3 flex items-center pointer-events-none">
-                  <Icon name="search" tw="[input:focus + div &]:text-purple-800" />
-                </span>
-                <button
-                  tw="absolute inset-y-0 right-0 px-3 inline-flex items-center"
-                  css={{ ...(!searchLocationFocused && tw`hidden`) }}
-                  type="button"
-                  onClick={() => setSearchLocationFocused(false)}
-                >
-                  <Icon name="x" tw="p-1" />
-                </button>
-              </div>
+              <Transition
+                appear
+                show
+                enter={tw`transition-opacity duration-300`}
+                enterFrom={tw`opacity-0`}
+                enterTo={tw`opacity-100`}
+              >
+                <div tw="relative self-stretch text-light-neutral-1000 mt-5">
+                  <Input
+                    tw="w-full px-10"
+                    placeholder="Search for a location..."
+                    onFocus={() => setSearchLocationFocused(true)}
+                    onBlur={() => {
+                      if (searchLocation === "") setSearchLocationFocused(false);
+                    }}
+                    onChange={e => startSearch("location", e.target.value)}
+                  />
+                  <span tw="absolute inset-y-0 left-0 px-3 flex items-center pointer-events-none">
+                    <Icon name="search" tw="[input:focus + div &]:text-purple-800" />
+                  </span>
+                  <button
+                    tw="absolute inset-y-0 right-0 px-3 inline-flex items-center"
+                    css={{ ...(!searchLocationFocused && tw`hidden`) }}
+                    type="button"
+                    onClick={() => setSearchLocationFocused(false)}
+                  >
+                    <Icon name="x" tw="p-1" />
+                  </button>
+                </div>
+              </Transition>
             )}
             <div tw="flex justify-end">
               <Button
@@ -221,28 +237,36 @@ const Settings = () => {
               ))}
             </div>
             {showSearchProduct && (
-              <div tw="relative self-stretch text-light-neutral-1000 mt-5">
-                <Input
-                  tw="w-full px-10"
-                  placeholder="Search for a product..."
-                  onFocus={() => setSearchProductFocused(true)}
-                  onBlur={() => {
-                    if (searchProduct === "") setSearchProductFocused(false);
-                  }}
-                  onChange={e => startSearch("product", e.target.value)}
-                />
-                <span tw="absolute inset-y-0 left-0 px-3 flex items-center pointer-events-none">
-                  <Icon name="search" tw="[input:focus + div &]:text-purple-800" />
-                </span>
-                <button
-                  tw="absolute inset-y-0 right-0 px-3 inline-flex items-center"
-                  css={{ ...(!searchProductFocused && tw`hidden`) }}
-                  type="button"
-                  onClick={() => setSearchProductFocused(false)}
-                >
-                  <Icon name="x" tw="p-1" />
-                </button>
-              </div>
+              <Transition
+                appear
+                show
+                enter={tw`transition-opacity duration-300`}
+                enterFrom={tw`opacity-0`}
+                enterTo={tw`opacity-100`}
+              >
+                <div tw="relative self-stretch text-light-neutral-1000 mt-5">
+                  <Input
+                    tw="w-full px-10"
+                    placeholder="Search for a product..."
+                    onFocus={() => setSearchProductFocused(true)}
+                    onBlur={() => {
+                      if (searchProduct === "") setSearchProductFocused(false);
+                    }}
+                    onChange={e => startSearch("product", e.target.value)}
+                  />
+                  <span tw="absolute inset-y-0 left-0 px-3 flex items-center pointer-events-none">
+                    <Icon name="search" tw="[input:focus + div &]:text-purple-800" />
+                  </span>
+                  <button
+                    tw="absolute inset-y-0 right-0 px-3 inline-flex items-center"
+                    css={{ ...(!searchProductFocused && tw`hidden`) }}
+                    type="button"
+                    onClick={() => setSearchProductFocused(false)}
+                  >
+                    <Icon name="x" tw="p-1" />
+                  </button>
+                </div>
+              </Transition>
             )}
             <div tw="flex justify-end">
               <Button
@@ -274,28 +298,36 @@ const Settings = () => {
               ))}
             </div>
             {showSearchCategory && (
-              <div tw="relative self-stretch text-light-neutral-1000 mt-5">
-                <Input
-                  tw="w-full px-10"
-                  placeholder="Search for a category..."
-                  onFocus={() => setSearchCategoryFocused(true)}
-                  onBlur={() => {
-                    if (searchCategory === "") setSearchCategoryFocused(false);
-                  }}
-                  onChange={e => startSearch("category", e.target.value)}
-                />
-                <span tw="absolute inset-y-0 left-0 px-3 flex items-center pointer-events-none">
-                  <Icon name="search" tw="[input:focus + div &]:text-purple-800" />
-                </span>
-                <button
-                  tw="absolute inset-y-0 right-0 px-3 inline-flex items-center"
-                  css={{ ...(!searchCategoryFocused && tw`hidden`) }}
-                  type="button"
-                  onClick={() => setSearchCategoryFocused(false)}
-                >
-                  <Icon name="x" tw="p-1" />
-                </button>
-              </div>
+              <Transition
+                appear
+                show
+                enter={tw`transition-opacity duration-300`}
+                enterFrom={tw`opacity-0`}
+                enterTo={tw`opacity-100`}
+              >
+                <div tw="relative self-stretch text-light-neutral-1000 mt-5">
+                  <Input
+                    tw="w-full px-10"
+                    placeholder="Search for a category..."
+                    onFocus={() => setSearchCategoryFocused(true)}
+                    onBlur={() => {
+                      if (searchCategory === "") setSearchCategoryFocused(false);
+                    }}
+                    onChange={e => startSearch("category", e.target.value)}
+                  />
+                  <span tw="absolute inset-y-0 left-0 px-3 flex items-center pointer-events-none">
+                    <Icon name="search" tw="[input:focus + div &]:text-purple-800" />
+                  </span>
+                  <button
+                    tw="absolute inset-y-0 right-0 px-3 inline-flex items-center"
+                    css={{ ...(!searchCategoryFocused && tw`hidden`) }}
+                    type="button"
+                    onClick={() => setSearchCategoryFocused(false)}
+                  >
+                    <Icon name="x" tw="p-1" />
+                  </button>
+                </div>
+              </Transition>
             )}
             <div tw="flex justify-end">
               <Button

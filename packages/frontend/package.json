@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@ailibs/feather-react-ts": "^3.0.3",
+    "@headlessui/react": "^1.7.13",
     "@stitches/react": "^1.2.8",
     "chart.js": "^4.2.1",
     "react": "^18.2.0",
