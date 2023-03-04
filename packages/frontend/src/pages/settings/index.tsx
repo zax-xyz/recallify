@@ -2,6 +2,19 @@ import React, { useState } from "react";
 import { Icon } from "@ailibs/feather-react-ts";
 import tw from "twin.macro";
 import Button from "components/Button";
+import { styled } from "@stitches/react";
+
+
+const StyledSelect = styled("select", {
+  backgroundColor: '#FDFDFF !important',
+  background: `url("data:image/svg+xml,<svg height='10px' width='10px' viewBox='0 0 16 16' fill='%23000000' xmlns='http://www.w3.org/2000/svg'><path d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/></svg>") no-repeat`,
+  backgroundPosition: `calc(100% - 0.75rem) center !important`,
+  MozAppearance: 'none !important',
+  WebkitAppearance: 'none !important',
+  appearance: 'none !important',
+  paddingRight: '2rem !important',
+})
+
 
 const Settings = () => {
   const [trackedLocations, setTrackedLocations] = useState([
@@ -39,10 +52,10 @@ const Settings = () => {
           <h2>General</h2>
           <div tw="flex flex-col gap-2">
             <label htmlFor="device-theme">Theme Preference</label>
-            <select id="device-theme" tw="flex justify-between py-[12px] px-[16px] bg-[#FDFDFF] border border-light-neutral-200 rounded-xl">
+            <StyledSelect id="device-theme" tw="flex justify-between py-[12px] px-[16px] border border-light-neutral-200 rounded-xl">
               <option value="Light Mode">Light Mode</option>
               <option value="Dark Mode">Dark Mode</option>
-            </select>
+            </StyledSelect>
           </div>
           <div tw="flex flex-col gap-2">
             <div tw="flex flex-col gap-0">
@@ -52,10 +65,10 @@ const Settings = () => {
                 habits.
               </p>
             </div>
-            <select id="extra-features" tw="flex justify-between py-[12px] px-[16px] bg-[#FDFDFF] border border-light-neutral-200 rounded-xl">
+            <StyledSelect id="extra-features" tw="flex justify-between py-[12px] px-[16px] border border-light-neutral-200 rounded-xl">
               <option value="yes">Yes</option>
               <option value="no">No</option>
-            </select>
+            </StyledSelect>
           </div>
         </section>
         <section>
@@ -86,10 +99,10 @@ const Settings = () => {
                 that location.
               </p>
             </div>
-            <select id="rt-location-tracking" tw="flex justify-between py-[12px] px-[16px] bg-[#FDFDFF] border border-light-neutral-200 rounded-xl">
+            <StyledSelect id="rt-location-tracking" tw="flex justify-between py-[12px] px-[16px] border border-light-neutral-200 rounded-xl">
               <option value="yes">Yes</option>
               <option value="no">No</option>
-            </select>
+            </StyledSelect>
           </div>
           <div tw="flex flex-col gap-2">
             <div tw="flex flex-col gap-0">
@@ -117,10 +130,10 @@ const Settings = () => {
             <label htmlFor="rt-product-tracking">
               Do you want to enable real-time tracking of observed products?
             </label>
-            <select id="rt-product-tracking" tw="flex justify-between py-[12px] px-[16px] bg-[#FDFDFF] border border-light-neutral-200 rounded-xl">
+            <StyledSelect id="rt-product-tracking" tw="flex justify-between py-[12px] px-[16px] border border-light-neutral-200 rounded-xl">
               <option value="yes">Yes</option>
               <option value="no">No</option>
-            </select>
+            </StyledSelect>
           </div>
           <div tw="flex flex-col gap-2">
             <div tw="flex flex-col gap-0">
