@@ -87,6 +87,7 @@ const data: ComponentProps<typeof Line>["data"] = {
     {
       data: labels.map(() => Math.floor(Math.random() * 100)),
       borderColor: "#a78bfa",
+      borderWidth: 2,
       fill: true,
       backgroundColor: (context: ScriptableContext<"line">) => {
         const { ctx } = context.chart;
