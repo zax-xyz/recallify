@@ -3,6 +3,7 @@ import "twin.macro";
 import Card from "components/Card";
 import Input from "components/Input";
 import ReceiptCard from "components/ReceiptCard";
+import FloatingActionButton from "components/FloatingActionButton";
 
 const products = ["a", "b", "c", "d"];
 
@@ -20,6 +21,7 @@ const Receipts = () => {
       <section>
         <ReceiptCard name="#1" date="14th February 2023" total="14.50" />
       </section>
+      <FloatingActionButton />
     </>
   );
 };
