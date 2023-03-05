@@ -1,0 +1,29 @@
+FROM node:slim as base
+RUN npm i -g pnpm
+WORKDIR /app
+
+COPY pnpm-lock.yaml pnpm-workspace.yaml .
+COPY packages/backend/package.json packages/backend/package.json
+COPY packages/frontend/package.json packages/frontend/package.json
+
+FROM base AS frontend-build
+
+WORKDIR packages/frontend
+RUN pnpm i --frozen-lockfile
+WORKDIR /app/packages/backend
+
+COPY packages/backend/. .
+RUN pnpm generate
+RUN pnpm build
+
+WORKDIR /app/packages/frontend
+COPY packages/frontend/. .
+
+RUN pnpm build
+
+FROM caddy:2.6.4-alpine
+COPY --from=frontend-build /app/packages/frontend/dist /srv
+COPY --from=frontend-build /app/packages/frontend/Caddyfile /etc/caddy/Caddyfile
+
+
+

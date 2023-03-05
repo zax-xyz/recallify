@@ -1,0 +1,19 @@
+FROM node:slim as base
+RUN npm i -g pnpm
+WORKDIR /app
+
+COPY pnpm-lock.yaml pnpm-workspace.yaml .
+COPY packages/backend/package.json packages/backend/package.json
+COPY packages/frontend/package.json packages/frontend/package.json
+
+FROM base AS backend-build
+
+WORKDIR packages/backend
+RUN pnpm i --frozen-lockfile
+
+COPY packages/backend/. .
+
+RUN pnpm generate
+RUN pnpm build
+ENTRYPOINT ["pnpm", "start"]
+
