@@ -15,7 +15,12 @@ export const fileToDataUrl = (file: File): Promise<string> => {
 };
 
 const FloatingActionButton = () => {
-  const mutation = trpc.postReceipt.useMutation();
+  const utils = trpc.useContext();
+  const mutation = trpc.postReceipt.useMutation({
+    onSuccess: () => {
+      void utils.getReceipts.invalidate();
+    },
+  });
 
   const handleCapture = async (target: HTMLInputElement) => {
     if (target.files && target.files.length !== 0) {
