@@ -1,6 +1,7 @@
+import { useParams } from "react-router-dom";
 import tw, { styled } from "twin.macro";
 
-import banana from "assets/banana.webp";
+import { trpc } from "client";
 
 const Header = styled("header", {
   ...tw`flex flex-col gap-1`,
@@ -20,59 +21,71 @@ const Tag = styled.div({
   },
 });
 
-const ProductPage = () => (
-  <div tw="flex flex-col gap-2 [p]:text-sm">
-    <Header>
-      <div tw="flex flex-col items-center self-center gap-2 mb-2">
-        <h1>Banana Cavendish</h1>
-        <img tw="w-48 p-4 bg-white rounded-lg shadow-1" src={banana} alt="banana" />
+const ProductPage = () => {
+  const id = useParams<{ id: string }>().id!;
+  const { data, isError } = trpc.getRecalledProduct.useQuery({ id });
+
+  if (isError) {
+    return <p tw="m-auto">An error has occurred :(</p>;
+  }
+
+  if (!data) {
+    return (
+      <svg
+        tw="m-auto animate-spin h-10 w-10 text-light-neutral-1000"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+      >
+        <circle tw="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+        <path
+          tw="opacity-75"
+          fill="currentColor"
+          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+        />
+      </svg>
+    );
+  }
+
+  const { product } = data;
+
+  return (
+    <div tw="flex flex-col gap-2 [p]:text-sm">
+      <Header>
+        <div tw="flex flex-col items-center self-center gap-2 mb-2">
+          <h1>{product.name}</h1>
+          <img tw="w-48 p-4 bg-white rounded-lg shadow-1" src={product.image_url} alt="banana" />
+        </div>
+
+        <section>
+          <h2>Origin</h2>
+          <p>{product.origin}</p>
+        </section>
+
+        <section>
+          <h2>Recalled on</h2>
+          <p>{product.recall_date}</p>
+        </section>
+      </Header>
+
+      <div tw="flex flex-col gap-2 [h2]:mb-0.5">
+        <section>
+          <h2>Product Information</h2>
+          <p>{product.product_info}</p>
+        </section>
+
+        <section>
+          <h2>Reason For Recall</h2>
+          <p>{product.problem}</p>
+        </section>
+
+        <section>
+          <h2>What to Do</h2>
+          <p>{product.what_to_do}</p>
+        </section>
       </div>
-
-      <section>
-        <h2>Manufacturer/Supplier</h2>
-        <p>Woolworths</p>
-      </section>
-
-      <section>
-        <h2>Recalled on</h2>
-        <p>14th February 2023</p>
-      </section>
-
-      <section>
-        <h2>Recalled Locations</h2>
-        <p>Woolworths across Australia</p>
-      </section>
-
-      <div tw="flex gap-2 py-1">
-        <Tag color="green">Food</Tag>
-        <Tag color="purple">Front of store</Tag>
-      </div>
-    </Header>
-
-    <div tw="flex flex-col gap-2 [h2]:mb-0.5">
-      <section>
-        <h2>Reason for recall</h2>
-        <p>
-          Lorem ipsum dolor sit amet consectetur. Amet eget sem vitae semper accumsan id sit ut
-          malesuada. Vulputate in gravida justo eget blandit velit. Diam in magna mi tellus enim.
-          Quis elementum neque pretium in vel quam. Imperdiet in massa habitant penatibus.
-        </p>
-      </section>
-
-      <section>
-        <h2>Additional Details</h2>
-        <p>
-          Lorem ipsum dolor sit amet consectetur. Amet eget sem vitae semper accumsan id sit ut
-          malesuada. Vulputate in gravida justo eget blandit velit.{" "}
-        </p>
-      </section>
-
-      <section>
-        <h2>Product Alternatives</h2>
-        <p>This product does not have alternatives</p>
-      </section>
     </div>
-  </div>
-);
+  );
+};
 
 export default ProductPage;
