@@ -36,17 +36,70 @@ const Pill = styled.div({
   },
 });
 
-const H2 = tw.h2`text-[15px] leading-tight mb-0`;
-const Detail = styled.div(tw`text-[11px] leading-tight text-light-neutral-700 mb-3`);
+const H2 = tw.h2`text-[24px] leading-tight mb-0`;
+const Detail = styled.div(tw`text-[14px] leading-tight text-light-neutral-700 mb-3`);
 
-const products = Array.from({ length: 26 }, (_, i) => String.fromCharCode("a".charCodeAt(0) + i));
+const products = [
+  {
+    name: "Cavendish Bananas Each",
+    image_url: "https://cdn0.woolworths.media/content/wowproductimages/large/133211.jpg",
+  },
+  {
+    name: "Salmon Tasmanian Atlantic Fillets Skin On Per Kg",
+    image_url: "https://cdn0.woolworths.media/content/wowproductimages/large/095171.jpg",
+  },
+  {
+    name: "Georgina White Washed Potato",
+    image_url: "https://cdn0.woolworths.media/content/wowproductimages/large/177575.jpg",
+  },
+  {
+    name: "Cabbage Chinese Wombok Whole Each",
+    image_url: "https://cdn0.woolworths.media/content/wowproductimages/large/170127.jpg",
+  },
+  {
+    name: "Kale Fresh Bunch",
+    image_url: "https://cdn0.woolworths.media/content/wowproductimages/large/380338.jpg",
+  },
+  {
+    name: "Fussy Cat Grain Free Adult Wet Cat Food Mince",
+    image_url: "https://cdn0.woolworths.media/content/wowproductimages/large/142345.jpg",
+  },
+  {
+    name: "Mango Keitt",
+    image_url: "https://cdn0.woolworths.media/content/wowproductimages/large/143737.jpg",
+  },
+  {
+    name: "Hellmann's Real Mayo Jar",
+    image_url: "https://cdn0.woolworths.media/content/wowproductimages/large/305383.jpg",
+  },
+  {
+    name: "Woolworths 35hr Sourdough Loaf White Each",
+    image_url: "https://cdn0.woolworths.media/content/wowproductimages/large/363952.jpg",
+  },
+  {
+    name: "Chobani Flip Greek Yogurt Cookies & Cream Crunch 140g",
+    image_url: "https://cdn0.woolworths.media/content/wowproductimages/large/687630.jpg",
+  },
+  {
+    name: "Nescafe Blend 43 Instant Coffee Jar 150g",
+    image_url: "https://cdn0.woolworths.media/content/wowproductimages/large/033835.jpg",
+  },
+  {
+    name: "Arnott's Chocolate Scotch Finger Biscuits 250g",
+    image_url: "https://cdn0.woolworths.media/content/wowproductimages/large/046808.jpg",
+  },
+  {
+    name: "Coca-cola Classic Soft Drink Multipack Cans",
+    image_url: "https://cdn0.woolworths.media/content/wowproductimages/large/042605.jpg",
+  },
+];
 
 const ProductsRow = ({ products }: { products: any }) => (
   <div tw="flex gap-3 p-1 pl-10 -mx-9 overflow-x-auto">
     {products.map((product, idx) => (
       <Link key={product.name} to={`/product/${idx}`}>
-        <Card key={product.name} tw="flex items-center justify-center w-24 h-24 flex-shrink-0">
-          <img tw="w-12 h-12" src={product.image_url} alt={product.name} />
+        <Card key={product.name} tw="flex items-center justify-center w-28 h-28 flex-shrink-0">
+          <img tw="w-20 h-20" src={product.image_url} alt={product.name} />
         </Card>
       </Link>
     ))}
@@ -58,7 +111,7 @@ const Alerts = styled.div({
     flex items-center gap-2
     px-4 py-2 mt-4
     bg-red-100 text-red-1000 shadow-1 shadow-red-600/10
-    text-[11px] rounded-md
+    text-[14px] rounded-md
   `,
 
   variants: {
@@ -69,7 +122,7 @@ const Alerts = styled.div({
 });
 
 const Landing = () => {
-  document.title = "Home | Recallify"
+  document.title = "Home | Recallify";
   const [searchFocused, setSearchFocused] = useState(false);
   const [searchedItem, setSearchedItem] = useState("");
   const [allRecalledProducts, setAllRecalledProducts] = useState<any>([]);
@@ -125,7 +178,7 @@ const Landing = () => {
 
         <Alerts hidden={searchFocused}>
           <Icon name="alert-triangle" tw="h-3.5 w-3.5" /> A product you recently purchased has been
-          recalled.
+          recalled!
         </Alerts>
       </header>
 
@@ -133,7 +186,7 @@ const Landing = () => {
         <section>
           <H2>Watched Products</H2>
           <Detail>Last Updated: 9:41pm 4/03/23</Detail>
-          {/* <ProductsRow products={products} /> */}
+          <ProductsRow products={products} />
         </section>
 
         <section>

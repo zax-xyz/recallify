@@ -53,17 +53,17 @@ const ProductPage = () => (
       <section>
         <h2>Reason for recall</h2>
         <p>
-          Lorem ipsum dolor sit amet consectetur. Amet eget sem vitae semper accumsan id sit ut
-          malesuada. Vulputate in gravida justo eget blandit velit. Diam in magna mi tellus enim.
-          Quis elementum neque pretium in vel quam. Imperdiet in massa habitant penatibus.
+          Testing has shown traces of hard plastic in the product.​ This may cause injury if
+          consumed.
         </p>
       </section>
 
       <section>
         <h2>Additional Details</h2>
         <p>
-          Lorem ipsum dolor sit amet consectetur. Amet eget sem vitae semper accumsan id sit ut
-          malesuada. Vulputate in gravida justo eget blandit velit.{" "}
+          Food products containing hard plastic may cause illness/injury if consumed.​ Please
+          consult a medical professional imediately if ingested. Consumers should not eat this
+          product and should return the product to the place of purchase for a full refund.​
         </p>
       </section>
 
