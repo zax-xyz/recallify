@@ -72,24 +72,11 @@ const Landing = () => {
   document.title = "Home | Recallify"
   const [searchFocused, setSearchFocused] = useState(false);
   const [searchedItem, setSearchedItem] = useState("");
-  const [allRecalledProducts, setAllRecalledProducts] = useState<any>([]);
 
-  const { refetch: getRecalledProducts } = trpc.getRecalledProducts.useQuery();
-  const { data: searchResults } = trpc.searchRecalledProducts.useQuery({
+  const { data: { products: allRecalledProducts = [] } = {} } = trpc.getRecalledProducts.useQuery();
+  const { data: { products: searchResults = [] } = {} } = trpc.searchRecalledProducts.useQuery({
     searchTerm: searchedItem,
   });
-
-  const performGetRecalledProducts = useCallback(async () => {
-    const { data: recalledProducts } = await getRecalledProducts();
-
-    if (recalledProducts) {
-      setAllRecalledProducts(recalledProducts.products);
-    }
-  }, [getRecalledProducts]);
-
-  useEffect(() => {
-    void performGetRecalledProducts();
-  }, [performGetRecalledProducts]);
 
   return (
     <div tw="z-0 flex flex-col gap-4">
@@ -159,10 +146,7 @@ const Landing = () => {
         </section>
       </div>
 
-      <SearchResults
-        css={{ ...(!searchFocused && tw`hidden`) }}
-        results={searchResults?.products}
-      />
+      <SearchResults css={{ ...(!searchFocused && tw`hidden`) }} results={searchResults} />
     </div>
   );
 };
