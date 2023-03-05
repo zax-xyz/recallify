@@ -20,7 +20,8 @@ const FloatingActionButton = () => {
   const handleCapture = async (target: HTMLInputElement) => {
     if (target.files && target.files.length !== 0) {
       const file = target.files[0];
-      mutation.mutate({ image: await fileToDataUrl(file) });
+      const image = await fileToDataUrl(file);
+      mutation.mutate({ image: image.split(",")[1] });
     }
   };
 
