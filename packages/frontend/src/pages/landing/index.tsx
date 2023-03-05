@@ -69,6 +69,7 @@ const Alerts = styled.div({
 });
 
 const Landing = () => {
+  document.title = "Home | Recallify"
   const [searchFocused, setSearchFocused] = useState(false);
   const [searchedItem, setSearchedItem] = useState("");
   const [searchResult, setSearchResult] = useState<any>([]);

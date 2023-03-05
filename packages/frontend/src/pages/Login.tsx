@@ -12,6 +12,7 @@ import Transition from "components/Transition";
 const Label = tw.label`inline-flex flex-col gap-0.5`;
 
 const Login = () => {
+  document.title = "Login | Recallify";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 

@@ -10,6 +10,7 @@ import Transition from "components/Transition";
 import tw from "twin.macro";
 
 const Profile = () => {
+  document.title = "Profile | Recallify";
   const [preferredName, setPreferredName] = useState("John Doe");
   const [email, setEmail] = useState("john.doe@email.com");
   const [location, setLocation] = useState("Cabramatta");

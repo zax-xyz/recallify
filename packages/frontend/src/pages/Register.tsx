@@ -12,6 +12,7 @@ import { trpc } from "client";
 const Label = tw.label`inline-flex flex-col gap-0.5`;
 
 const Register = () => {
+  document.title = "Register | Recallify";
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

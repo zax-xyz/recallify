@@ -17,6 +17,7 @@ const StyledSelect = styled("select", {
 });
 
 const Settings = () => {
+  document.title = "Settings | Recallify";
   const [showSearchLocation, setShowSearchLocation] = useState(false);
   const [searchLocationFocused, setSearchLocationFocused] = useState(false);
   const [searchLocation, setSearchLocation] = useState("");

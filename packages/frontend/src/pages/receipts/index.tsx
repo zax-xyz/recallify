@@ -8,6 +8,7 @@ import { trpc } from "client";
 import { useCallback, useEffect, useState } from "react";
 
 const Receipts = () => {
+  document.title = "Receipts | Recallify";
   const [receipts, setReceipts] = useState([]);
   const { refetch: getReceipts } = trpc.getReceipts.useQuery();
 
