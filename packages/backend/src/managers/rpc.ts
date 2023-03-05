@@ -6,7 +6,7 @@ import {
   getRecalledProducts,
   searchForRecalledProduct,
 } from "./recalledProducts";
-import { getReceipts } from "./receipts";
+import { getReceipts, uploadReceipt } from "./receipts";
 import { createRegisterUserHandler, loginHandler } from "./user";
 
 /**
@@ -35,4 +35,5 @@ export const appRouter = t.router({
 
   // receipts
   getReceipts: getReceipts(),
+  postReceipt: uploadReceipt(),
 });
