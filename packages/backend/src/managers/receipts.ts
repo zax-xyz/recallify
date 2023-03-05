@@ -37,10 +37,10 @@ export const uploadReceipt = () =>
 
       const buffer = Buffer.from(input.image, "base64");
       const form = new FormData();
-      form.append("image", buffer, "receipt.jpg");
+      form.append("image", buffer, `receipt-${new Date()}.jpg`);
 
       try {
-        const response = await axios.post(
+        const response = await axios.put(
           process.env.POST_URL ?? "http://localhost:3002/upload",
           form,
           {
