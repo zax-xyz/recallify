@@ -43,8 +43,8 @@ const products = Array.from({ length: 26 }, (_, i) => String.fromCharCode("a".ch
 
 const ProductsRow = ({ products }: { products: any }) => (
   <div tw="flex gap-3 p-1 pl-10 -mx-9 overflow-x-auto">
-    {products.map((product, idx) => (
-      <Link key={product.name} to={`/product/${idx}`}>
+    {products.map(product => (
+      <Link key={product.name} to={`/product/${product.id}`}>
         <Card key={product.name} tw="flex items-center justify-center w-24 h-24 flex-shrink-0">
           <img tw="w-12 h-12" src={product.image_url} alt={product.name} />
         </Card>
@@ -69,14 +69,15 @@ const Alerts = styled.div({
 });
 
 const Landing = () => {
-  document.title = "Home | Recallify"
+  document.title = "Home | Recallify";
   const [searchFocused, setSearchFocused] = useState(false);
   const [searchedItem, setSearchedItem] = useState("");
 
   const { data: { products: allRecalledProducts = [] } = {} } = trpc.getRecalledProducts.useQuery();
-  const { data: { products: searchResults = [] } = {} } = trpc.searchRecalledProducts.useQuery({
-    searchTerm: searchedItem,
-  });
+  const { data: { products: searchResults = [] } = {} } = trpc.searchRecalledProducts.useQuery(
+    { searchTerm: searchedItem },
+    { enabled: searchedItem.length >= 3 },
+  );
 
   return (
     <div tw="z-0 flex flex-col gap-4">
