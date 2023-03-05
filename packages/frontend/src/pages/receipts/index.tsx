@@ -4,9 +4,24 @@ import FloatingActionButton from "components/FloatingActionButton";
 import Transition from "components/Transition";
 import tw from "twin.macro";
 import ReceiptCard from "components/ReceiptCard";
+import { trpc } from "client";
+import { useEffect, useState } from "react";
 
 const Receipts = () => {
+  const [receipts, setReceipts] = useState([]);
+
   // Fetch then map the receipts.
+  const performGetReceipts = async () => {
+    const allReceipts = await trpc.getReceipts.query();
+
+    if (allReceipts.receipts) {
+      // setReceipts(allReceipts.receipts);
+    }
+  };
+
+  useEffect(() => {
+    performGetReceipts();
+  }, []);
 
   return (
     <>
@@ -23,7 +38,12 @@ const Receipts = () => {
           <h2 tw="text-2xl font-bold my-3">View your previous receipts</h2>
         </section>
         <section>
-          <ReceiptCard name="#1" date="14th February 2023" total="14.50" />
+          {
+            receipts.map(receipt => {
+              return receipt;
+              // return <ReceiptCard name={receipt} date={receipt.date} total={receipt.total} />;
+            })
+          }
         </section>
       </Transition>
       <FloatingActionButton />

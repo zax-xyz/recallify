@@ -1,5 +1,5 @@
 import { Icon } from "@ailibs/feather-react-ts";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import tw, { styled } from "twin.macro";
 
@@ -8,6 +8,7 @@ import Input from "components/Input";
 
 import Chart from "./Chart";
 import SearchResults from "./SearchResults";
+import { trpc } from "client";
 
 const FadeGradient = styled.div({
   ...tw`absolute top-0 inset-x-0 h-60 -z-10 transition-opacity duration-300`,
@@ -40,12 +41,12 @@ const Detail = styled.div(tw`text-[11px] leading-tight text-light-neutral-700 mb
 
 const products = Array.from({ length: 26 }, (_, i) => String.fromCharCode("a".charCodeAt(0) + i));
 
-const ProductsRow = ({ products }: { products: string[] }) => (
+const ProductsRow = ({ products }: { products: any }) => (
   <div tw="flex gap-3 p-1 pl-10 -mx-9 overflow-x-auto">
-    {products.map(product => (
-      <Link key={product} to="/product/1">
-        <Card key={product} tw="flex items-center justify-center w-24 h-24 flex-shrink-0">
-          {product}
+    {products.map((product, idx) => (
+      <Link key={product.name} to={`/product/${idx}`}>
+        <Card key={product.name} tw="flex items-center justify-center w-24 h-24 flex-shrink-0">
+          <img tw="w-12 h-12" src={product.image_url} alt={product.name} />
         </Card>
       </Link>
     ))}
@@ -70,6 +71,29 @@ const Alerts = styled.div({
 const Landing = () => {
   const [searchFocused, setSearchFocused] = useState(false);
   const [searchedItem, setSearchedItem] = useState("");
+  const [searchResult, setSearchResult] = useState<any>([]);
+  const [allRecalledProducts, setAllRecalledProducts] = useState<any>([]);
+
+  const performGetRecalledProducts = async () => {
+    const recalledProducts = await trpc.getRecalledProducts.query();
+
+    if (recalledProducts) {
+      setAllRecalledProducts(recalledProducts.products);
+    }
+  };
+
+  const performSearchItem = async () => {
+    const searchResult = await trpc.searchRecalledProducts.query({ searchTerm: searchedItem });
+
+    if (searchResult) {
+      console.log(searchResult.products)
+      setAllRecalledProducts(searchResult.products);
+    }
+  };
+
+  useEffect(() => {
+    performGetRecalledProducts();
+  }, []);
 
   return (
     <div tw="z-0 flex flex-col gap-4">
@@ -86,7 +110,13 @@ const Landing = () => {
             onBlur={() => {
               if (searchedItem === "") setSearchFocused(false);
             }}
-            onChange={e => setSearchedItem(e.target.value)} 
+            onChange={e => {
+              setSearchedItem(e.target.value);
+              setTimeout(() => {
+                if (searchedItem === "") setSearchFocused(false);
+                else performSearchItem();
+              }, 1000);
+            }}
           />
           <span tw="absolute inset-y-0 left-0 px-3 flex items-center pointer-events-none">
             <Icon name="search" tw="[input:focus + div &]:text-purple-800" />
@@ -111,13 +141,13 @@ const Landing = () => {
         <section>
           <H2>Watched Products</H2>
           <Detail>Last Updated: 9:41pm 4/03/23</Detail>
-          <ProductsRow products={products} />
+          {/* <ProductsRow products={products} /> */}
         </section>
 
         <section>
           <H2>Latest Recalled Products</H2>
           <Detail>Last Updated: 9:41pm 4/03/23</Detail>
-          <ProductsRow products={products} />
+          <ProductsRow products={allRecalledProducts} />
         </section>
 
         <section>
@@ -137,7 +167,7 @@ const Landing = () => {
         </section>
       </div>
 
-      <SearchResults css={{ ...(!searchFocused && tw`hidden`) }} />
+      <SearchResults css={{ ...(!searchFocused && tw`hidden`) }} results={searchResult} />
     </div>
   );
 };
