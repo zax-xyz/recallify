@@ -1,3 +1,5 @@
+import { Icon } from "@ailibs/feather-react-ts";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import tw, { styled } from "twin.macro";
 
@@ -10,13 +12,18 @@ const Header = styled("header", {
   "& p": tw`mt-0 text-light-neutral-700`,
 });
 
-const Tag = styled.div({
-  ...tw`py-1 px-2 rounded-lg text-sm`,
+const ShareBtn = styled("button", {
+  ...tw`
+    fixed bottom-32 right-8
+    w-16 h-16 p-5
+    bg-[#fdfdff] text-purple-1000 rounded-full shadow-2
+    overflow-visible
+    transition-[bottom] duration-200 ease-out
+  `,
 
   variants: {
-    color: {
-      green: tw`text-[#317f67] bg-[#daf0e9]`,
-      purple: tw`text-[#7561af] bg-[#ede8fe]`,
+    hidden: {
+      true: tw`bottom-0 ease-in`,
     },
   },
 });
@@ -24,6 +31,49 @@ const Tag = styled.div({
 const ProductPage = () => {
   const id = useParams<{ id: string }>().id!;
   const { data, isError } = trpc.getRecalledProduct.useQuery({ id });
+
+  const [shareHidden, setShareHidden] = useState(false);
+  const touchStart = useRef<number | null>(null);
+
+  const share = useCallback(() => {
+    if (data === undefined) {
+      return;
+    }
+
+    void navigator.share({
+      title: document.title,
+      text: `${data.product.name} recalled!`,
+      url: window.location.href,
+    });
+  }, [data]);
+
+  useEffect(() => {
+    const onScroll = (e: WheelEvent) => {
+      setShareHidden(e.deltaY > 0);
+    };
+
+    const onTouchStart = (e: TouchEvent) => {
+      touchStart.current = e.touches[0].clientY;
+    };
+    const onTouchMove = (e: TouchEvent) => {
+      if (touchStart.current === null) {
+        touchStart.current = e.touches[0].clientY;
+      } else {
+        setShareHidden(e.touches[0].clientY - touchStart.current < 0);
+        touchStart.current = null;
+      }
+    };
+
+    document.addEventListener("wheel", onScroll);
+    document.addEventListener("touchstart", onTouchStart);
+    document.addEventListener("touchmove", onTouchMove);
+
+    return () => {
+      document.removeEventListener("wheel", onScroll);
+      document.removeEventListener("touchstart", onTouchStart);
+      document.removeEventListener("touchmove", onTouchMove);
+    };
+  }, []);
 
   if (isError) {
     return <p tw="m-auto">An error has occurred :(</p>;
@@ -50,41 +100,46 @@ const ProductPage = () => {
   const { product } = data;
 
   return (
-    <div tw="flex flex-col gap-2 [p]:text-sm">
-      <Header>
-        <div tw="flex flex-col items-center self-center gap-2 mb-2">
-          <h1>{product.name}</h1>
-          <img tw="w-48 p-4 bg-white rounded-lg shadow-1" src={product.image_url} alt="banana" />
+    <>
+      <div tw="flex flex-col gap-2 [p]:text-sm">
+        <Header>
+          <div tw="flex flex-col items-center self-center gap-2 mb-2">
+            <h1>{product.name}</h1>
+            <img tw="w-48 p-4 bg-white rounded-lg shadow-1" src={product.image_url} alt="banana" />
+          </div>
+
+          <section>
+            <h2>Origin</h2>
+            <p>{product.origin}</p>
+          </section>
+
+          <section>
+            <h2>Recalled on</h2>
+            <p>{product.recall_date}</p>
+          </section>
+        </Header>
+
+        <div tw="flex flex-col gap-2 [h2]:mb-0.5">
+          <section>
+            <h2>Product Information</h2>
+            <p>{product.product_info}</p>
+          </section>
+
+          <section>
+            <h2>Reason For Recall</h2>
+            <p>{product.problem}</p>
+          </section>
+
+          <section>
+            <h2>What to Do</h2>
+            <p>{product.what_to_do}</p>
+          </section>
         </div>
-
-        <section>
-          <h2>Origin</h2>
-          <p>{product.origin}</p>
-        </section>
-
-        <section>
-          <h2>Recalled on</h2>
-          <p>{product.recall_date}</p>
-        </section>
-      </Header>
-
-      <div tw="flex flex-col gap-2 [h2]:mb-0.5">
-        <section>
-          <h2>Product Information</h2>
-          <p>{product.product_info}</p>
-        </section>
-
-        <section>
-          <h2>Reason For Recall</h2>
-          <p>{product.problem}</p>
-        </section>
-
-        <section>
-          <h2>What to Do</h2>
-          <p>{product.what_to_do}</p>
-        </section>
       </div>
-    </div>
+      <ShareBtn hidden={shareHidden} onClick={share}>
+        <Icon name="share-2" />
+      </ShareBtn>
+    </>
   );
 };
 

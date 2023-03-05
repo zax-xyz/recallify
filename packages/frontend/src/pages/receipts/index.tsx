@@ -1,11 +1,9 @@
-import "twin.macro";
-
-import FloatingActionButton from "components/FloatingActionButton";
-import Transition from "components/Transition";
 import tw from "twin.macro";
-import ReceiptCard from "components/ReceiptCard";
+
 import { trpc } from "client";
-import { useCallback, useEffect, useState } from "react";
+import FloatingActionButton from "components/FloatingActionButton";
+import ReceiptCard from "components/ReceiptCard";
+import Transition from "components/Transition";
 
 const Receipts = () => {
   document.title = "Receipts | Recallify";
