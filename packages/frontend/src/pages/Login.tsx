@@ -18,11 +18,10 @@ const Login = () => {
   const { setUser } = useContext(UserContext);
   const navigate = useNavigate();
 
+  const { refetch: loginQuery } = trpc.login.useQuery({ email, password }, { enabled: false });
+
   const performLogin = async () => {
-    const login = await trpc.login.query({
-      email,
-      password,
-    });
+    const { data: login } = await loginQuery();
 
     if (login) {
       setUser({ name: login.name, email: login.email, authenticated: true });

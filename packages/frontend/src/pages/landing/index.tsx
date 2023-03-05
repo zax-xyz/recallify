@@ -1,5 +1,5 @@
 import { Icon } from "@ailibs/feather-react-ts";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import tw, { styled } from "twin.macro";
 
@@ -74,26 +74,31 @@ const Landing = () => {
   const [searchResult, setSearchResult] = useState<any>([]);
   const [allRecalledProducts, setAllRecalledProducts] = useState<any>([]);
 
-  const performGetRecalledProducts = async () => {
-    const recalledProducts = await trpc.getRecalledProducts.query();
+  const { refetch: getRecalledProducts } = trpc.getRecalledProducts.useQuery();
+  const { refetch: searchRecalledProducts } = trpc.searchRecalledProducts.useQuery({
+    searchTerm: searchedItem,
+  });
+
+  const performGetRecalledProducts = useCallback(async () => {
+    const { data: recalledProducts } = await getRecalledProducts();
 
     if (recalledProducts) {
       setAllRecalledProducts(recalledProducts.products);
     }
-  };
+  }, [getRecalledProducts]);
 
-  const performSearchItem = async () => {
-    const searchResult = await trpc.searchRecalledProducts.query({ searchTerm: searchedItem });
+  const performSearchItem = useCallback(async () => {
+    const { data: searchResult } = await searchRecalledProducts();
 
     if (searchResult) {
-      console.log(searchResult.products)
+      console.log(searchResult.products);
       setAllRecalledProducts(searchResult.products);
     }
-  };
+  }, [searchRecalledProducts]);
 
   useEffect(() => {
-    performGetRecalledProducts();
-  }, []);
+    void performGetRecalledProducts();
+  }, [performGetRecalledProducts]);
 
   return (
     <div tw="z-0 flex flex-col gap-4">
@@ -114,7 +119,7 @@ const Landing = () => {
               setSearchedItem(e.target.value);
               setTimeout(() => {
                 if (searchedItem === "") setSearchFocused(false);
-                else performSearchItem();
+                else void performSearchItem();
               }, 1000);
             }}
           />

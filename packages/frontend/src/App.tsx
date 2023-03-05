@@ -14,6 +14,10 @@ import ProductPage from "pages/product";
 import Profile from "pages/profile";
 import Receipts from "pages/receipts";
 import Settings from "pages/settings";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+import { trpc } from "client";
+import { httpBatchLink } from "@trpc/react-query";
 
 const routes = [
   <Route
@@ -70,18 +74,33 @@ const App = () => {
   const [user, setUser] = useState(defaultUserState.user);
   const userContextValue = useMemo(() => ({ user, setUser }), [user]);
 
+  const [queryClient] = useState(() => new QueryClient());
+  const [trpcClient] = useState(
+    trpc.createClient({
+      links: [
+        httpBatchLink({
+          url: "/rpc",
+        }),
+      ],
+    }),
+  );
+
   return (
-    <UserContext.Provider value={userContextValue}>
-      <div tw="flex flex-col h-screen">
-        <BrowserRouter>
-          <main tw="flex flex-col gap-4 flex-1 p-9 pb-28">
-            <BackgroundGlow />
-            <Routes>{routes}</Routes>
-          </main>
-          <NavBar hidden={!user.authenticated} />
-        </BrowserRouter>
-      </div>
-    </UserContext.Provider>
+    <trpc.Provider client={trpcClient} queryClient={queryClient}>
+      <QueryClientProvider client={queryClient}>
+        <UserContext.Provider value={userContextValue}>
+          <div tw="flex flex-col h-screen">
+            <BrowserRouter>
+              <main tw="flex flex-col gap-4 flex-1 p-9 pb-28">
+                <BackgroundGlow />
+                <Routes>{routes}</Routes>
+              </main>
+              <NavBar hidden={!user.authenticated} />
+            </BrowserRouter>
+          </div>
+        </UserContext.Provider>
+      </QueryClientProvider>
+    </trpc.Provider>
   );
 };
 

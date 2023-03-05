@@ -5,23 +5,24 @@ import Transition from "components/Transition";
 import tw from "twin.macro";
 import ReceiptCard from "components/ReceiptCard";
 import { trpc } from "client";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 const Receipts = () => {
   const [receipts, setReceipts] = useState([]);
+  const { refetch: getReceipts } = trpc.getReceipts.useQuery();
 
   // Fetch then map the receipts.
-  const performGetReceipts = async () => {
-    const allReceipts = await trpc.getReceipts.query();
+  const performGetReceipts = useCallback(async () => {
+    const { data: allReceipts } = await getReceipts();
 
-    if (allReceipts.receipts) {
+    if (allReceipts?.receipts) {
       // setReceipts(allReceipts.receipts);
     }
-  };
+  }, [getReceipts]);
 
   useEffect(() => {
-    performGetReceipts();
-  }, []);
+    void performGetReceipts();
+  }, [performGetReceipts]);
 
   return (
     <>
@@ -38,12 +39,10 @@ const Receipts = () => {
           <h2 tw="text-2xl font-bold my-3">View your previous receipts</h2>
         </section>
         <section>
-          {
-            receipts.map(receipt => {
-              return receipt;
-              // return <ReceiptCard name={receipt} date={receipt.date} total={receipt.total} />;
-            })
-          }
+          {receipts.map(receipt => {
+            return receipt;
+            // return <ReceiptCard name={receipt} date={receipt.date} total={receipt.total} />;
+          })}
         </section>
       </Transition>
       <FloatingActionButton />

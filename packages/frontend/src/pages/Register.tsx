@@ -20,22 +20,20 @@ const Register = () => {
   const { setUser } = useContext(UserContext);
   const navigate = useNavigate();
 
+  const { mutate } = trpc.registerUser.useMutation({
+    onSuccess: data => {
+      setUser({ name: data.name, email: data.email, authenticated: true });
+      navigate("/");
+    },
+  });
+
   const performRegister = async () => {
     if (password !== confirmPassword) {
       console.error("Passwords do not match");
       return;
     }
 
-    const register = await trpc.registerUser.mutate({
-      name,
-      email,
-      password,
-    });
-
-    if (register) {
-      setUser({ name: register.name, email: register.email, authenticated: true });
-      navigate("/");
-    }
+    void mutate({ name, email, password });
   };
 
   return (
