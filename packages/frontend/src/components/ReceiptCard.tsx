@@ -3,7 +3,7 @@ import "twin.macro";
 type ReceiptCardProps = {
   name: string;
   date: string;
-  total: string;
+  total: number | null;
 };
 
 const ReceiptCard = ({ name, date, total }: ReceiptCardProps) => {
