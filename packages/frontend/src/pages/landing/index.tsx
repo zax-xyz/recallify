@@ -109,9 +109,9 @@ const ProductsRow = ({ products }: { products: any }) => (
 const Alerts = styled.div({
   ...tw`
     flex items-center gap-2
-    px-4 py-2 mt-4
+    px-4 py-2 mt-4 w-max
     bg-red-100 text-red-1000 shadow-1 shadow-red-600/10
-    text-[14px] rounded-md
+    text-[13px] rounded-md
   `,
 
   variants: {
