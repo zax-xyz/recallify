@@ -49,7 +49,7 @@ export default defineConfig({
   server: {
     proxy: {
       // string shorthand: http://localhost:5173/foo -> http://localhost:4567/foo
-      "/rpc": "http://localhost:3001",
+      "/rpc": "http://127.0.0.1:3001",
     },
   },
 });
