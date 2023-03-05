@@ -21,7 +21,7 @@ const SearchResults = ({
       <ul tw="flex flex-col gap-2">
         <li>
           {results.map(result => (
-            <Link to="/product/1">
+            <Link to={`/product/${result.id}`}>
               <Card tw="flex gap-8 items-center">
                 <img tw="w-28" src={result.image_url} alt="banana" />
                 <div tw="flex flex-col gap-2">
