@@ -96,8 +96,8 @@ const products = [
 
 const ProductsRow = ({ products }: { products: any }) => (
   <div tw="flex gap-3 p-1 pl-10 -mx-9 overflow-x-auto">
-    {products.map((product, idx) => (
-      <Link key={product.name} to={`/product/${idx}`}>
+    {products.map(product => (
+      <Link key={product.name} to={`/product/${product.id}`}>
         <Card key={product.name} tw="flex items-center justify-center w-28 h-28 flex-shrink-0">
           <img tw="w-20 h-20" src={product.image_url} alt={product.name} />
         </Card>
@@ -125,24 +125,12 @@ const Landing = () => {
   document.title = "Home | Recallify";
   const [searchFocused, setSearchFocused] = useState(false);
   const [searchedItem, setSearchedItem] = useState("");
-  const [allRecalledProducts, setAllRecalledProducts] = useState<any>([]);
 
-  const { refetch: getRecalledProducts } = trpc.getRecalledProducts.useQuery();
-  const { data: searchResults } = trpc.searchRecalledProducts.useQuery({
-    searchTerm: searchedItem,
-  });
-
-  const performGetRecalledProducts = useCallback(async () => {
-    const { data: recalledProducts } = await getRecalledProducts();
-
-    if (recalledProducts) {
-      setAllRecalledProducts(recalledProducts.products);
-    }
-  }, [getRecalledProducts]);
-
-  useEffect(() => {
-    void performGetRecalledProducts();
-  }, [performGetRecalledProducts]);
+  const { data: { products: allRecalledProducts = [] } = {} } = trpc.getRecalledProducts.useQuery();
+  const { data: { products: searchResults = [] } = {} } = trpc.searchRecalledProducts.useQuery(
+    { searchTerm: searchedItem },
+    { enabled: searchedItem.length >= 3 },
+  );
 
   return (
     <div tw="z-0 flex flex-col gap-4">
@@ -212,10 +200,7 @@ const Landing = () => {
         </section>
       </div>
 
-      <SearchResults
-        css={{ ...(!searchFocused && tw`hidden`) }}
-        results={searchResults?.products}
-      />
+      <SearchResults css={{ ...(!searchFocused && tw`hidden`) }} results={searchResults} />
     </div>
   );
 };

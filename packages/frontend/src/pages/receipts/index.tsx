@@ -9,21 +9,7 @@ import { useCallback, useEffect, useState } from "react";
 
 const Receipts = () => {
   document.title = "Receipts | Recallify";
-  const [receipts, setReceipts] = useState([]);
-  const { refetch: getReceipts } = trpc.getReceipts.useQuery();
-
-  // Fetch then map the receipts.
-  const performGetReceipts = useCallback(async () => {
-    const { data: allReceipts } = await getReceipts();
-
-    if (allReceipts?.receipts) {
-      // setReceipts(allReceipts.receipts);
-    }
-  }, [getReceipts]);
-
-  useEffect(() => {
-    void performGetReceipts();
-  }, [performGetReceipts]);
+  const { data: { receipts = [] } = {} } = trpc.getReceipts.useQuery();
 
   return (
     <>
@@ -40,10 +26,13 @@ const Receipts = () => {
           <h2 tw="text-2xl font-bold my-3">View your previous receipts</h2>
         </section>
         <section>
-          {receipts.map(receipt => {
-            return receipt;
-            // return <ReceiptCard name={receipt} date={receipt.date} total={receipt.total} />;
-          })}
+          {receipts.map(receipt => (
+            <ReceiptCard
+              name={receipt.name}
+              date={receipt.input_date}
+              total={receipt.total_value}
+            />
+          ))}
         </section>
       </Transition>
       <FloatingActionButton />
